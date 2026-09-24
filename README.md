@@ -1,8 +1,10 @@
 # Voice recipe
 
-Mac 上の AI 席（Claude Code または Pi）に、音声入力・即答・要約読み上げ・表示中の席だけ鳴らす音声層を足すレシピです。中身は [SPEC.md](docs/output.md)・[SPEC-input.md](docs/input.md)・[SETUP.md](SETUP.md)・[tests/](tests/) です。出力はこの `docs/output.md` をあなたの AI に渡し、`tests/` が全部通るまで作らせてください。入力は `docs/input.md` と `SETUP.md` です。
+人向け: まずこの README、次に [SETUP.md](SETUP.md)。AI 向け: [docs/output.md](docs/output.md)・[docs/input.md](docs/input.md)・[docs/aizuchi.md](docs/aizuchi.md) と [tests/](tests/) を渡してください。
 
-A recipe to give Claude Code or Pi a voice layer on a Mac: voice input, instant replies, spoken summaries, and playback only on the seat you are looking at. This repo is [SPEC.md](docs/output.md), [SPEC-input.md](docs/input.md), [SETUP.md](SETUP.md), and [tests/](tests/). Give `docs/output.md` to your AI and have it build until every test in `tests/` passes. For input, give it `docs/input.md` and `SETUP.md`.
+For people: read this README, then [SETUP.md](SETUP.md). For AI: provide [docs/output.md](docs/output.md), [docs/input.md](docs/input.md), [docs/aizuchi.md](docs/aizuchi.md), and [tests/](tests/).
+
+A recipe to give Claude Code or Pi a voice layer on a Mac: voice input, instant replies, spoken summaries, and playback only on the seat you are looking at.
 
 ## 日本語
 
@@ -12,7 +14,7 @@ A recipe to give Claude Code or Pi a voice layer on a Mac: voice input, instant 
 2. **要約して読む** — エージェントの長い返事を耳向けに短くし、AivisSpeech が 1 文ずつ読む。
 3. **見ている席だけ鳴る** — tmux で複数席があっても、今表示している席以外は無音。
 
-**音声入力** — [SPEC-input.md](docs/input.md) と [SETUP.md](SETUP.md) をあなたの AI に渡せば、PTT（右 Option）と任意のハードウェアボタンを使う入力環境が組める。マイクを録り、whisper.cpp で文字にし、置換表で直して前面のアプリへ入れる。音声認識経路はローカルで動きます。認識後は挨拶・感謝・謝罪・感情などの定形意図だけ即答に渡し、判定に失敗しても入力本文はそのまま続く。要約・書き換えの接続先は別設定で、外部サーバーも指定できます。USB microphone 受信機ボタンはトグルで、2 回目に認識結果を入力して Enter 送信します。右 Option は押している間だけ録音し、Enter は送りません。
+**音声入力** — 詳細と構築手順は [docs/input.md](docs/input.md) と [SETUP.md](SETUP.md) を参照。即答分類器の説明は [docs/aizuchi.md](docs/aizuchi.md)。
 
 ### 要るもの
 
@@ -59,7 +61,7 @@ LLM を使わず、`~/.config/voice/config.json` に次を設定する。`summar
 
 ### 使い方
 
-この `docs/output.md` をあなたの AI に渡し、`tests/` が全部通るまで作らせる。音声入力は [SPEC-input.md](docs/input.md) と [SETUP.md](SETUP.md) を渡せば、PTT（右 Option）と任意のハードウェアボタンを使う入力環境が組める。
+構築仕様は [docs/output.md](docs/output.md)、音声入力は [docs/input.md](docs/input.md)、即答分類器は [docs/aizuchi.md](docs/aizuchi.md)。これらと `tests/` を AI に渡してください。
 
 `tests/` の run-all が通る条件:
 
@@ -94,7 +96,7 @@ LLM を使わず、`~/.config/voice/config.json` に次を設定する。`summar
 2. **Summarize and speak** — Long agent replies are shortened for the ear. AivisSpeech reads them one sentence at a time.
 3. **Only the seat you are looking at plays** — With several tmux seats, seats you are not viewing stay silent.
 
-**Voice input** — Give [SPEC-input.md](docs/input.md) and [SETUP.md](SETUP.md) to your AI to build an input stack using push-to-talk (Right Option) and an optional hardware button. It transcribes with whisper.cpp, applies the replacement table, and pastes into the front app. Speech recognition runs locally; summarization and rewriting have separate settings and may use a remote endpoint. Right after transcription, only canned intents such as greetings, thanks, apologies, and emotion are handed to instant replies; if that check fails, the input text still continues. The USB microphone receiver button toggles recording and sends Enter after transcription on the second press. Right Option records only while held and does not send Enter.
+**Voice input** — See [docs/input.md](docs/input.md) and [SETUP.md](SETUP.md) for the details and setup. See [docs/aizuchi.md](docs/aizuchi.md) for the instant-reply classifier.
 
 ### What you need
 
@@ -141,7 +143,7 @@ Author's setup: custom Gemma 4, a USB wireless microphone (the Mac lists it as t
 
 ### How to use it
 
-Give this `docs/output.md` to your AI and have it build until every test in `tests/` passes. For voice input, give it [SPEC-input.md](docs/input.md) and [SETUP.md](SETUP.md) to build an input stack using push-to-talk (Right Option) and an optional hardware button.
+Give your AI [docs/output.md](docs/output.md), [docs/input.md](docs/input.md), [docs/aizuchi.md](docs/aizuchi.md), and `tests/` as the build specification and acceptance criteria.
 
 run-all in `tests/` passes when:
 

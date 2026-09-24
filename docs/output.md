@@ -150,3 +150,29 @@ Gemma 26B 用（`voice.py` の SUMMARY_PROMPT、OpenAI 互換 API 要求の温�
 - Aizuchi: smoke 固定テストで意図正答 ≥0.9・none 誤爆 ≤1%、int8 変換前後で成績を照合
 - 要約: 実記録 10 件で要点の欠け・主語のすり替え・依頼の作り足しが 0（字数は上限のみ）
 - 失敗報告は原因 1 行。同一原因で 2 回失敗したら人間に引き取らせる
+
+## イントネーションを良くしたい人へ
+
+規約の心配なく取り組める順:
+
+1. 読みの辞書（`readings.tsv` 形式）を育てる。効き目が最も大きい
+2. AivisSpeech の話速・抑揚・音高を声ごとに調整する
+3. AivisHub で、学習や改変が許された声を選ぶ
+4. 自分で録った声で追加学習する
+
+### 上級者向け: 学習でさらに良くする
+
+学習材料には、自分で録った声、学習への利用が明示的に許されたデータセットや声（ライセンスを必ず確認）、または利用規約に「出力を学習に使ってよい」と明記された音声サービスの出力を使えます。多くの商用音声合成サービスは、出力を別モデルの学習に使うことを禁じています。使う前に必ず規約を確認してください。
+
+## For anyone who wants better intonation
+
+Here is an order of steps that avoids licensing concerns:
+
+1. Improve the pronunciation dictionary (in `readings.tsv` format). This has the greatest effect.
+2. Adjust AivisSpeech speed, intonation, and pitch for each voice.
+3. Choose a voice in AivisHub that permits training or modification.
+4. Fine-tune with a voice you recorded yourself.
+
+### Advanced: improve it further with training
+
+Training material can include your own recordings; datasets or voices that explicitly permit use for training (always check the license); or output from an audio service whose terms explicitly state that its output may be used for training. Many commercial speech synthesis services prohibit using their output to train a separate model. Always check the terms before using it.
