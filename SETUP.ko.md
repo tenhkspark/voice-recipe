@@ -370,7 +370,28 @@ AIZUCHI_DIR=$HOME/project/project/voice/aizuchi \
 
 제작자(일본어)는 AivisSpeech를 사용하고 있지만, AivisSpeech는 일본어 전용입니다. 영어, 중국어, 한국어에서는 이와 유사한 역할을 하는 도구를 사용합니다. 후보 비교, 현재 `voice.py`의 언어별 동작, 사전 주의 사항은 [docs/output.ko.md의 「일본어 이외의 목소리」](docs/output.ko.md#일본어-이외의-목소리-영어-중국어-한국어)을 참조하십시오.
 
-**음성 출력 설정 지침:** 답변, 요약, 즉답 각각의 문장 언어를 판정하고, 일본어 문장은 AivisSpeech로, 그 밖의 언어는 해당 언어를 지원하는 로컬 TTS 또는 macOS 표준 음성으로 보내십시오. 문장을 일본어 음성으로 그대로 읽히면 다른 언어의 발음과 억양이 무너집니다. Aizuchi 즉답에서는 분류 결과의 `lang`을 그대로 사용하고, 값이 없을 때만 텍스트의 문자 종류로 판정합니다. 현재 실물 구현은 `voice.py`에서 언어와 관계없이 설정된 AivisSpeech 화자를 사용하고, 합성 실패 시 `say -v Kyoko`로 대체합니다. 또한 Aizuchi는 응답 텍스트만 `voice.speak()`에 전달하므로 이 언어별 분기는 아직 연결되어 있지 않습니다. 따라서 언어별 음성으로 운용하려면 출력 경로에 위 판정과 분기를 연결해야 합니다.
+답변, 요약, 즉답을 합성할 때는 읽을 문장의 언어를 판정하여 해당 언어용 로컬 TTS와 음성으로 보냅니다. 일본어는 AivisSpeech를, 다른 언어는 docs/output.ko.md에서 선택한 로컬 TTS 또는 macOS 표준 음성 중 대상 언어의 음성을 사용합니다. 일본어 음성에 일괄 전달하면 영어·중국어·한국어의 발음과 억양이 무너집니다.
+
+설정 예시 (키 이름은 `tests/fixtures/lang-route.tsv`의 기대값과 일치):
+
+```json
+{
+  "voice_ja": { "engine": "aivis", "speaker_id": 1310138977 },
+  "voice_en": { "engine": "piper-plus", "voice": "<영어 모델 음성 ID>" },
+  "voice_zh": { "engine": "piper-plus", "voice": "<중국어 모델 음성 ID>" },
+  "voice_ko": { "engine": "say", "voice": "<say -v '?'로 확인한 한국어 음성 이름>" }
+}
+```
+
+이는 언어와 음성의 대응을 나타내는 설정 예시입니다. 엔진 이름·음성 ID·음성 이름은 실제로 설치해 사용하는 엔진에 맞춥니다. Aizuchi 즉답은 반환 데이터에 `lang`이 있으면 그 값으로 음성을 선택합니다. `lang`이 없으면 본문의 문자 종류로 판정하며, 가나→ja, 한글→ko, 한자→zh, 그 외→en으로 분류합니다. Aizuchi 답변 본문은 번역하지 않고 그대로 합성에 전달합니다.
+
+소리를 재생하지 않고 언어별 분기를 확인하려면 실제 `voice.py`를 지정해 다음을 실행합니다. `--select-voice-key`는 선택된 설정 키만 출력하고, `VOICE_NO_PLAY=1`도 설정하므로 재생하지 않습니다. fixture의 ja/en/zh/ko 문장 4개가 각각 `voice_ja` / `voice_en` / `voice_zh` / `voice_ko`로 선택되는지 확인합니다.
+
+```sh
+VOICE_PY="$HOME/project/tools/voice/output/voice.py" python3 tests/test_lang_route.py
+```
+
+fixture와 테스트 설명은 [tests/README.en.md](tests/README.en.md)에도 있습니다. 기대하는 대응을 변경하면 `tests/fixtures/lang-route.tsv`의 키도 갱신합니다.
 
 공통 후보는 [piper-plus](https://github.com/ayutaz/piper-plus)입니다. 공식 절차에서는 Apple Silicon용 배포 바이너리와 로컬 HTTP API를 안내하고 있습니다. 공식 README에 따라 도입하고, API를 `localhost`에만 bind하여 실행합니다. 사용하는 음성 모델은 코드와 별개의 라이선스이므로, 모델 카드를 통해 상업적 이용, 수정, 배포 조건을 확인하십시오. 영어와 보통화(Mandarin)는 공개된 모델의 언어 및 화자 중에서 선택합니다. 한국어는 코드 지원 여부와 배포된 학습 완료 음성을 혼동하지 마십시오. 사용할 수 있는 한국어 모델을 찾을 수 없는 경우에는 macOS 표준 음성을 사용합니다.
 

@@ -192,3 +192,9 @@ smoke 测试失败的案例包括：低于阈值的 `none`（如“晚安”、�
 | angry | en | That would really make me mad too | （空。合成） |
 
 当存在多个候选时，每次执行随机抽取 1 条。上表并非抽样结果。无需重新训练，只需替换表文件即可。
+
+### 按语言分流到对应的声音
+
+将 Aizuchi 回复中的 `lang` 与语音播放端所选的引擎／声音设置键对应起来。键名示例：`ja → voice_ja`、`en → voice_en`、`zh → voice_zh`、`ko → voice_ko`。实际键名应符合所用的语音设置。如果没有分流，例如英语、中文或韩语由日语声音朗读，发音可能会失真。
+
+要在不播放声音的情况下确认分流，请依据 `tests/fixtures/lang-route.tsv` 中四种语言的句子和预期键，运行 `VOICE_PY=/path/to/voice.py python3 tests/test_lang_route.py`。该测试调用 `--select-voice-key <句子>` 路径，只将选中的键输出到标准输出，并设置 `VOICE_NO_PLAY=1`，逐一精确核对四个结果。测试不会播放声音。
