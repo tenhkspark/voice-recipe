@@ -7,6 +7,7 @@
 재료 (텍스트만):
 
 - `fixtures/` … Stop의 전사문 샘플 (Claude Code 형식 및 그 외 형식)
+- `fixtures/lang-route.tsv` … 4개 언어의 문장과 선택되어야 하는 음성 설정 키
 - `aizuchi/smoke.tsv` … 의도 분류 정답. 정답률 0.9 이상, `none` 오탐률 0.01 이하
 - `aizuchi/smoke-dictation.tsv` … 받아쓰기. 울리면 안 되는 경우의 오탐률 1% 이하, 울려야 하는 경우의 미탐률 10% 이하
 - `aizuchi/speak_intents.txt` … 즉시 응답해도 되는 의도. 받아쓰기에서 울리는 경우는 여기 있는 의도에만 해당
@@ -28,6 +29,7 @@
 | `AIZUCHI_SOCK` | run-all | 없음. 기존 상주 소켓을 사용할 때만 지정 |
 | `AIZUCHI_SERVE` | run-all | 없음. `AIZUCHI_MODEL`에 맞춰 임시 소켓을 실행 |
 | `AIZUCHI_MODEL` | run-all | 없음 (모델 본체는 포함되어 있지 않음) |
+| `RUN_LANG_ROUTE` | run-all | 비활성. `1`일 때만 언어 분기 테스트를 추가 |
 
 좌석명 `test`는 표시 `t`를 사용하는 계약입니다. 구현에서는 이 문자열일 때 표시를 남깁니다. 머신 고유의 좌석명은 넣지 않습니다.
 

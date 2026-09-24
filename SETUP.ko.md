@@ -1,4 +1,4 @@
-[日本語](./SETUP.md) / [English](./SETUP.md) / [中文](./SETUP.zh.md) / [한국어](./SETUP.ko.md)
+[日本語](./SETUP.md) / [中文](./SETUP.zh.md) / [한국어](./SETUP.ko.md)
 
 # 도입 절차 (입력 및 출력)
 
@@ -383,7 +383,7 @@ AIZUCHI_DIR=$HOME/project/project/voice/aizuchi \
 }
 ```
 
-이는 언어와 음성의 대응을 나타내는 설정 예시입니다. 엔진 이름·음성 ID·음성 이름은 실제로 설치해 사용하는 엔진에 맞춥니다. Aizuchi 즉답은 반환 데이터에 `lang`이 있으면 그 값으로 음성을 선택합니다. `lang`이 없으면 본문의 문자 종류로 판정하며, 가나→ja, 한글→ko, 한자→zh, 그 외→en으로 분류합니다. Aizuchi 답변 본문은 번역하지 않고 그대로 합성에 전달합니다.
+이는 언어와 음성의 대응을 나타내는 설정 예시입니다. 엔진 이름·음성 ID·음성 이름은 실제로 설치해 사용하는 엔진에 맞춥니다. Aizuchi 즉답은 반환 데이터에서 `lang`을 제공하며, 값이 없으면 본문의 문자 종류로 가나→ja, 한글→ko, 한자→zh, 그 외→en으로 판정합니다. 다만 현재 즉답 재생은 이 `lang`을 `voice.py`에 전달하지 않으므로 언어별 음성 선택에는 반영되지 않습니다. Aizuchi 답변 본문은 번역하지 않고 그대로 합성에 전달합니다.
 
 소리를 재생하지 않고 언어별 분기를 확인하려면 실제 `voice.py`를 지정해 다음을 실행합니다. `--select-voice-key`는 선택된 설정 키만 출력하고, `VOICE_NO_PLAY=1`도 설정하므로 재생하지 않습니다. fixture의 ja/en/zh/ko 문장 4개가 각각 `voice_ja` / `voice_en` / `voice_zh` / `voice_ko`로 선택되는지 확인합니다.
 

@@ -159,7 +159,7 @@ UNIX ソケット。作者の既定パスは `~/.config/voice/aizuchi.sock`。1 
 | 材料 | 合格 |
 |---|---|
 | `smoke.tsv`（陽性 132 ＋ none 120） | 意図の正答 ≥ 0.9、かつ none を別意図にした割合 ≤ 0.01 |
-| `smoke-dictation.tsv`（silent 600 ＋ reply 200） | 鳴らしてはいけない行を、32 意図のどれかで鳴らした割合は合格ライン以内。鳴るべき行を鳴らさなかった割合も合格ライン以内。`expect` が silent / reply 以外なら不合格 |
+| `smoke-dictation.tsv`（silent 600 ＋ reply 200） | 無音行を32意図のどれかで鳴らす割合 ≤ 0.01、返事行を鳴らさない割合 ≤ 0.10。`expect` が silent / reply 以外なら不合格 |
 
 鳴るかどうかは、予測意図が `speak_intents.txt` に入っているか。正解意図と違っても、32 の中なら dictation では「鳴った」になる。
 
@@ -352,7 +352,7 @@ run-all in [tests/](../tests/) plays no audio. The two instant-reply rows send `
 | Fixture | Pass |
 |---|---|
 | `smoke.tsv` (132 positive + 120 none) | Intent accuracy ≥ 0.9, and the share of `none` rows predicted as some other intent ≤ 0.01 |
-| `smoke-dictation.tsv` (600 silent + 200 reply) | Share of silent rows spoken as one of the 32 must be within the pass bar. Share of reply rows not spoken must also be within the pass bar. Any other `expect` value fails the file |
+| `smoke-dictation.tsv` (600 silent + 200 reply) | Silent rows spoken as one of the 32: rate ≤ 0.01; reply rows not spoken: rate ≤ 0.10. Any other `expect` value fails the file |
 
 "Spoken" means the predicted intent is in `speak_intents.txt`. A wrong intent inside the 32 still counts as spoken on the dictation set.
 

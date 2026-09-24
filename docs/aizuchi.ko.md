@@ -1,4 +1,4 @@
-[日本語](./aizuchi.md) / [English](./aizuchi.md) / [中文](./aizuchi.zh.md) / [한국어](./aizuchi.ko.md)
+[日本語](./aizuchi.md) / [中文](./aizuchi.zh.md) / [한국어](./aizuchi.ko.md)
 
 # Aizuchi 만드는 법
 
@@ -36,11 +36,11 @@
 
 재생은 분류기에서 `afplay`로 수행하지 않습니다. 자리 비움·정숙 시간·대기 순번 등은 재생 측(작성자는 `voice.py`의 `speak`)으로 전달합니다.
 
-### 言語ごとの音声へ振り分ける
+### 언어에 맞는 음성으로 연결하기
 
-Aizuchi の返事の `lang` を、再生側で使うエンジン／音声設定キーに対応付ける。キーの例は `ja → voice_ja`、`en → voice_en`、`zh → voice_zh`、`ko → voice_ko`。実際の音声設定に存在する名前を使う。振り分けないと、ほかの言語も日本語音声で読まれ、発音が大きく崩れることがある。
+재생 측에서 Aizuchi 응답의 `lang`에 따라 엔진·음성 설정 키를 선택하도록 연결합니다. 키 예시는 `ja → voice_ja`, `en → voice_en`, `zh → voice_zh`, `ko → voice_ko`이며 실제 사용하는 음성 설정의 키를 적용합니다. 현재 `voicein.py`는 `lang`을 음성 선택에 전달하지 않고 응답 텍스트만 `voice.speak()`에 전달하므로, 이 연결은 아직 구현되어 있지 않습니다. 연결하지 않으면 다른 언어도 일본어 음성으로 읽혀 발음이 크게 어색해질 수 있습니다.
 
-라우팅을 소리 없이 확인하려면 `tests/fixtures/lang-route.tsv`의 4개 문장과 기대 키를 사용하여 `VOICE_PY=/path/to/voice.py python3 tests/test_lang_route.py`를 실행합니다. 이 테스트는 `--select-voice-key <text>`를 호출하고 `VOICE_NO_PLAY=1`을 설정해, 표준 출력의 키가 각 기대값과 정확히 일치하는지 확인합니다. 음성은 재생하지 않습니다. 다만 현재 `voice.py`에는 `--select-voice-key` 옵션이 없으므로 이 테스트는 통과할 수 없습니다. 실제 라우팅 확인은 Aizuchi의 `lang`을 재생 측 음성 선택에 연결한 뒤 진행해야 합니다.
+`tests/fixtures/lang-route.tsv`에는 4개 언어의 문장과 기대 키가 있습니다. `tests/test_lang_route.py`는 `--select-voice-key <text>`를 호출하고 `VOICE_NO_PLAY=1`을 설정해 표준 출력의 키를 비교하도록 작성되어 있습니다. 그러나 현재 `voice.py`에는 `--select-voice-key` 옵션이 없어 이 테스트는 현재 구현에서 통과할 수 없습니다. 언어별 라우팅을 구현한 뒤 이 테스트를 사용할 수 있습니다.
 
 ## 2. 의도 설계
 

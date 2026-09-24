@@ -1,4 +1,4 @@
-[日本語](./SETUP.md) / [English](./SETUP.md) / [中文](./SETUP.zh.md) / [한국어](./SETUP.ko.md)
+[日本語](./SETUP.md) / [中文](./SETUP.zh.md) / [한국어](./SETUP.ko.md)
 
 # 導入手順（入力と出力）
 

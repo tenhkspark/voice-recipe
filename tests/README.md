@@ -24,7 +24,7 @@
 | `VOICE_TEST_FOREIGN_SEAT` | test_paths | `other-session`（名乗ってはいけない別セッション） |
 | `VOICE_E2E_SEAT` | e2e | `test`。この名前のときだけ記録の印が `t` であることを見る |
 | `VOICE_TEST_CWD` | test_paths / e2e | `/tmp/voice-proj` |
-| `AIZUCHI_DIR` | run-all | `tests/aizuchi`（smoke と speak_intents） |
+| `AIZUCHI_DIR` | run-all | `tests/aizuchi`（2 つの smoke TSV と speak_intents） |
 | `AIZUCHI_PYTHON` | run-all | `python3` |
 | `AIZUCHI_SOCK` | run-all | 無し。既存の常駐ソケットを使うときだけ指定する |
 | `AIZUCHI_SERVE` | run-all | 無し。`AIZUCHI_MODEL` と揃えて一時ソケットを起動する |

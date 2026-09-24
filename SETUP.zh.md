@@ -377,7 +377,7 @@ AIZUCHI_DIR=$HOME/project/project/voice/aizuchi \
 
 朗读回复、摘要和即时回答之前，先判断待读句子的语言，并将其路由到对应语言的声音：日语使用 AivisSpeech；其他语言使用该语言推荐的 Mac 本地 TTS，或 macOS 自带的相应声音。若不做语言路由，日语声音会被用来朗读其他语言，发音可能严重失真。此处是配置和确认步骤；实际路由需由 voice.py 的实现提供。
 
-Aizuchi 即时回复优先沿用 reply_map 所选回复的 `lang`，并将此语言传给声音选择环节；只有 `lang` 缺失时，才按文本字符种类判定：假名→ja、韩文→ko、汉字→zh、其他→en。不要仅凭回复文本重新推断而覆盖已有的 `lang`。
+Aizuchi 即时回复目前不会将回复的 `lang` 传给声音选择环节；`respond.py` 只把回复文本交给 `voice.py`，因此语言路由会按文本字符种类判定：假名→ja、韩文→ko、汉字→zh、其他→en。若要让回复优先沿用 `reply_map` 中的 `lang`，还需修改这两者之间的调用接口。
 
 无须播放声音即可确认路由：从项目根目录运行以下检查。它读取 `tests/fixtures/lang-route.tsv` 中四种语言的示例，通过 `--select-voice-key` 查询选中的声音键，并设置 `VOICE_NO_PLAY=1` 禁止播放。
 

@@ -1,4 +1,4 @@
-[日本語](./README.md) / [English](./README.md) / [中文](./README.zh.md) / [한국어](./README.ko.md)
+[日本語](./README.md#日本語) / [English](./README.md#english) / [中文](./README.zh.md#简体中文) / [한국어](./README.ko.md#한국어)
 
 # Voice recipe
 

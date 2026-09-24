@@ -1,4 +1,4 @@
-[日本語](./input.md) / [English](./input.md) / [中文](./input.zh.md) / [한국어](./input.ko.md)
+[日本語](./input.md) / [中文](./input.zh.md) / [한국어](./input.ko.md)
 
 # SPEC-input — 音声入力の作り方
 
