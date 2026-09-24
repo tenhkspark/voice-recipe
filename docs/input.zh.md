@@ -366,7 +366,7 @@ none / 低于阈值: intent=none, reply=""
 17. TCC 的“已启用”显示可能会延迟，导致看起来与 toggle 状态相反。以实际测量（按下后是否有文字出现）为准。
 18. `VOICEIN_DEV` 的编号因设备而异。如果硬编码 `:0`，插到其他麦克风上将无法工作。应通过 `list_devices` 获取。
 19. CLI 路径会将 HALLUC 保留在剪贴板中。PTT 则为空。不要混淆“即时回答跳过”和“输入跳过”。
-20. `speak_intents.txt` 正本中的 30 个词与 voicein 退避集合（evacuation set）不一致。仅在正本中有的：`how-are-you`。仅在退避集合中有的：`invite` `meetup`。只要文件可读，以正本为准。
+20. `speak_intents.txt` 正本中的 30 个词与 voicein 备用集合不一致。仅在正本中有的：`how-are-you`。仅在备用集合中有的：`invite` `meetup`。只要文件可读，以正本为准。
 21. README / 设计文档中提到了 `input/hammerspoon-init.lua`、`slash_test.py`、`replace-stats.py` 和 `indicator.png`，但当前磁盘中并不存在（测试文件和正本副本已被移除）。`init.lua` 的实际生效实体是 `$HOME/.hammerspoon/init.lua`。
 22. 如果实现 `--listen` 为“存在”，则会启动一个没有入口的常驻进程。目前采取有理由地立即结束处理。
 23. avfoundation 的 `-i` 格式为 `:N`（视频为空，音频为 N）。如果只写 `N`，它会尝试占用视频设备。

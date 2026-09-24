@@ -369,7 +369,7 @@ voicein は `afplay` も `respond.py` も呼ばない。再生は `voice.speak` 
 15. 録音終了後の認識・タイプ・確認中はプロセスが居ない。`post_rec_grace_sec` 30 が無いと、その間に自動発話が始まる。逆に即答もこの窓で `skip-dictating` になる。
 16. `anullsrc` や wav 注入は `-re` 無しだと実時間にならない。テストが歪む。
 17. TCC の「有効」表示が遅れて、トグルと逆に見えることがある。実測（押して文字が出るか）が正。
-18. `VOICEIN_DEV` の番号は機の差。`:0` をハードコードしたまま別マイクへ刺さらない。list_devices で取る。
+18. `VOICEIN_DEV` の番号は機の差。既定値は `:0` だが、`VOICEIN_DEV` で上書きしないと別マイクへ刺さらない。list_devices で確認して指定する。
 19. CLI 経路は HALLUC をクリップボードへ残す。PTT は空。即答スキップと入力スキップを混同しない。
 20. `speak_intents.txt` 正本 30 と voicein 退避集合は一致していない。正本だけにある: `how-are-you`。退避だけにある: `invite` `meetup`。ファイルが読める限り正本が勝つ。
 21. `input/hammerspoon-init.lua`・`slash_test.py`・`replace-stats.py`・`indicator.png` は README / 設計書が指すが、今のディスクには無い（テストと正本コピーは撤去済み）。init.lua は `$HOME/.hammerspoon/init.lua` が生きている実体。

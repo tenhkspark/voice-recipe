@@ -195,9 +195,9 @@ smoke の落ちた例には、閾値未満の `none`（「おやすみなさい�
 
 ### 言語に合う声へ振り分ける
 
-Aizuchi が返事に付ける `lang` と、音声再生側が選ぶエンジン／声の設定キーを対応させる。キー名の例は `ja → voice_ja`、`en → voice_en`、`zh → voice_zh`、`ko → voice_ko`。実際のキー名は利用する音声設定に合わせる。振り分けが無いと、たとえば日本語の声で英語・中国語・韓国語を読んで発音が崩れる。
+Aizuchi が返事に付ける `lang` と、音声再生側が選ぶエンジン／声の設定キーを対応させる。キー名の例は `ja → voice_ja`、`en → voice_en`、`zh → voice_zh`、`ko → voice_ko`。実際のキー名は利用する音声設定に合わせる。振り分けが無いと、たとえば日本語の声で英語・中国語・韓国語を読んで発音が崩れる。現行の `voicein.py` は `lang` を使わず返事の文字列だけを `voice.speak()` に渡し、現行の `voice.py` も言語別の声選択には対応していない。
 
-音を鳴らさず確認するには、`tests/fixtures/lang-route.tsv` の4言語の文と期待キーを基準に、`VOICE_PY=/path/to/voice.py python3 tests/test_lang_route.py` を実行する。この試験は `--select-voice-key <文>` で選択キーだけを標準出力へ返す経路を呼び、`VOICE_NO_PLAY=1` を設定して4件のキーを完全一致で確かめる。再生はしない。
+言語別の声選択を実装した `voice.py` では、音を鳴らさず確認するため `tests/fixtures/lang-route.tsv` の4言語の文と期待キーを基準に、`VOICE_PY=/path/to/voice.py python3 tests/test_lang_route.py` を実行できる。この試験は `--select-voice-key <文>` で選択キーだけを標準出力へ返す経路を呼び、`VOICE_NO_PLAY=1` を設定して4件のキーを完全一致で確かめる。再生はしない。現行の `voice.py` にはこの選択専用経路もない。
 
 ---
 

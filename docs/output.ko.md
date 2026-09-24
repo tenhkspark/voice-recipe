@@ -38,7 +38,7 @@ Mac 1대만으로 구동되는 「듣기·즉시 응답·요약·말하기」 �
 ### 소켓 형식 (Aizuchi 상주)
 
 - UNIX 소켓 (예: `~/.config/voice/aizuchi.sock`). 1 연결/발화당 1줄의 JSON을 반환
-- 응답: `{"intent": str, "score": float, "id": str, "reply": str, "lang": str}`. `id`/`reply`가 비어 있으면 "합성 대상 답변 문장"을 의미함. none 또는 임계값 미만인 경우 `intent:"none"`, 빈 id/reply 반환
+- 응답: `{"intent": str, "score": float, "id": str, "reply": str, "lang": str}`. `intent:"none"`이면 빈 id/reply는 답변이 없다는 뜻이다. 그 외 의도에서 두 값이 비어 있으면 정형 답변 후보가 없다는 뜻이며, 클라이언트는 재생을 건너뛴다. none 또는 임계값 미만인 경우 `intent:"none"`, 빈 id/reply 반환
 - 서버 측 추론 예외는 `{"intent":"error","error":...}`로 반환됨. PTT 클라이언트는 에러 응답이나 발화 허용되지 않은 의도(intent)를 재생하지 않으며, 로컬 추론으로 전환하지도 않음. 실패하더라도 일반적인 PTT 인식 본문은 표준 출력(stdout)으로 계속 반환함 (함정 7.2 참조)
 
 ### 설정 키 (config.json 주요 부분)
