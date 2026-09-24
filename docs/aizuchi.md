@@ -191,6 +191,12 @@ smoke の落ちた例には、閾値未満の `none`（「おやすみなさい�
 
 候補が複数あるときは実行のたびに 1 本。上の表は抽選結果ではない。再学習は不要。表だけ差し替える。
 
+### 言語に合う声へ振り分ける
+
+Aizuchi が返事に付ける `lang` と、音声再生側が選ぶエンジン／声の設定キーを対応させる。キー名の例は `ja → voice_ja`、`en → voice_en`、`zh → voice_zh`、`ko → voice_ko`。実際のキー名は利用する音声設定に合わせる。振り分けが無いと、たとえば日本語の声で英語・中国語・韓国語を読んで発音が崩れる。
+
+音を鳴らさず確認するには、`tests/fixtures/lang-route.tsv` の4言語の文と期待キーを基準に、`VOICE_PY=/path/to/voice.py python3 tests/test_lang_route.py` を実行する。この試験は `--select-voice-key <文>` で選択キーだけを標準出力へ返す経路を呼び、`VOICE_NO_PLAY=1` を設定して4件のキーを完全一致で確かめる。再生はしない。
+
 ---
 
 # English
@@ -375,3 +381,9 @@ Examples (candidates that are in the table):
 | angry | en | That would really make me mad too | (empty, synthesize) |
 
 Several candidates means one draw per call. The table above is the inventory, not one draw. No retraining. Replace the table on its own.
+
+### Route each language to its voice
+
+Map Aizuchi's reply `lang` to the engine/voice setting key used by playback. Example keys: `ja → voice_ja`, `en → voice_en`, `zh → voice_zh`, `ko → voice_ko`; use names that exist in your voice configuration. Without routing, other languages may be read in a Japanese voice and sound badly mispronounced.
+
+To check routing without playing audio, use the four sentences and expected keys in `tests/fixtures/lang-route.tsv`, then run `VOICE_PY=/path/to/voice.py python3 tests/test_lang_route.py`. The test calls `--select-voice-key <text>`, sets `VOICE_NO_PLAY=1`, and checks each exact key on stdout. It does not play audio.

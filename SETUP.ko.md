@@ -370,6 +370,8 @@ AIZUCHI_DIR=$HOME/project/project/voice/aizuchi \
 
 제작자(일본어)는 AivisSpeech를 사용하고 있지만, AivisSpeech는 일본어 전용입니다. 영어, 중국어, 한국어에서는 이와 유사한 역할을 하는 도구를 사용합니다. 후보 비교, 현재 `voice.py`의 언어별 동작, 사전 주의 사항은 [docs/output.ko.md의 「일본어 이외의 목소리」](docs/output.ko.md#일본어-이외의-목소리-영어-중국어-한국어)을 참조하십시오.
 
+**음성 출력 설정 지침:** 답변, 요약, 즉답 각각의 문장 언어를 판정하고, 일본어 문장은 AivisSpeech로, 그 밖의 언어는 해당 언어를 지원하는 로컬 TTS 또는 macOS 표준 음성으로 보내십시오. 문장을 일본어 음성으로 그대로 읽히면 다른 언어의 발음과 억양이 무너집니다. Aizuchi 즉답에서는 분류 결과의 `lang`을 그대로 사용하고, 값이 없을 때만 텍스트의 문자 종류로 판정합니다. 현재 실물 구현은 `voice.py`에서 언어와 관계없이 설정된 AivisSpeech 화자를 사용하고, 합성 실패 시 `say -v Kyoko`로 대체합니다. 또한 Aizuchi는 응답 텍스트만 `voice.speak()`에 전달하므로 이 언어별 분기는 아직 연결되어 있지 않습니다. 따라서 언어별 음성으로 운용하려면 출력 경로에 위 판정과 분기를 연결해야 합니다.
+
 공통 후보는 [piper-plus](https://github.com/ayutaz/piper-plus)입니다. 공식 절차에서는 Apple Silicon용 배포 바이너리와 로컬 HTTP API를 안내하고 있습니다. 공식 README에 따라 도입하고, API를 `localhost`에만 bind하여 실행합니다. 사용하는 음성 모델은 코드와 별개의 라이선스이므로, 모델 카드를 통해 상업적 이용, 수정, 배포 조건을 확인하십시오. 영어와 보통화(Mandarin)는 공개된 모델의 언어 및 화자 중에서 선택합니다. 한국어는 코드 지원 여부와 배포된 학습 완료 음성을 혼동하지 마십시오. 사용할 수 있는 한국어 모델을 찾을 수 없는 경우에는 macOS 표준 음성을 사용합니다.
 
 macOS 표준 음성 도입은 시스템 설정 → 접근성 → 콘텐츠 읽어주기(Spoken Content) → 시스템 음성 → 음성 관리(Manage Voices)에서 진행합니다. 대상 언어에서 Enhanced/Premium으로 표시되는 음성이 있다면 선택하여 다운로드합니다. 음성 이름은 OS 버전 및 지역에 따라 다르므로 고정하지 말고, 도입 후 `say -v '?'`를 실행하여 영어, 보통화/지역 중국어, 한국어의 음성 이름을 확인하십시오. 예시는 Samantha/Alex, Ting-Ting/Mei-Jia/Sin-ji, Yuna입니다.

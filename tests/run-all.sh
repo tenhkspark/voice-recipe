@@ -269,6 +269,21 @@ PY
   fi
 fi
 
+# 日本語環境では通常無効。明示的に有効にした時だけ言語別の声選択を検査。
+if [ "${RUN_LANG_ROUTE:-}" = 1 ]; then
+  log_lang=$(mktemp "${TMPDIR:-/tmp}/runall-lang-route.XXXXXX")
+  VOICE_PY=${VOICE_PY:-} python3 "$HERE/test_lang_route.py" >"$log_lang" 2>&1
+  st=$?
+  detail=$(grep '^summary' "$log_lang" | tail -1 | tr -d '\r')
+  [ -n "$detail" ] || detail="exit=$st"
+  if [ "$st" -eq 0 ]; then
+    add_row "lang-route" PASS "$detail"
+  else
+    add_row "lang-route" FAIL "$detail"
+  fi
+  rm -f "$log_lang"
+fi
+
 n=$(wc -l < "$rows" | tr -d ' ')
 bad=$(grep -c '	FAIL	' "$rows" || true)
 good=$((n - bad))

@@ -380,6 +380,29 @@ AIZUCHI_DIR=$HOME/project/project/voice/aizuchi \
 
 作者（日本語）は AivisSpeech を使っているが、AivisSpeech は日本語専用。英語・中国語・韓国語では同じような役割のものを使う。候補比較・現在の voice.py の言語別挙動・辞書の注意は [docs/output.md の「日本語以外の声」](docs/output.md#日本語以外の声英語中国語韓国語) を参照。
 
+返事・要約・即答を合成するときは、読み上げる文の言語を判定し、その言語用のローカル TTS と声へ振り分ける。日本語は AivisSpeech、他言語は docs/output.md の候補から選んだローカル TTS、または macOS 標準の `say` の対象言語の声を使う。日本語の声へ一律に渡すと、英語・中国語・韓国語の発音が崩れる。
+
+設定例（キー名は `tests/fixtures/lang-route.tsv` の期待値に対応）：
+
+```json
+{
+  "voice_ja": { "engine": "aivis", "speaker_id": 1310138977 },
+  "voice_en": { "engine": "piper-plus", "voice": "<英語モデルの声ID>" },
+  "voice_zh": { "engine": "piper-plus", "voice": "<中国語モデルの声ID>" },
+  "voice_ko": { "engine": "say", "voice": "<say -v '?' で確認した韓国語の声名>" }
+}
+```
+
+これは言語と声の対応を示す設定例。エンジン名・声 ID・声名は、実際に導入して利用するエンジンに合わせる。Aizuchi の即答は返却データに `lang` があればその値で声を選ぶ。`lang` が無い場合は本文の文字種で判定し、かな→ja、ハングル→ko、漢字→zh、それ以外→en とする。Aizuchi の返事本文は翻訳せず、そのまま合成へ渡す。
+
+音を鳴らさずに振り分けを確認するには、実際の `voice.py` を指定して次を実行する。`--select-voice-key` は選ばれた設定キーだけを出力し、`VOICE_NO_PLAY=1` も設定するため再生しない。fixture の ja/en/zh/ko 4 文がそれぞれ `voice_ja` / `voice_en` / `voice_zh` / `voice_ko` になることを確認する。
+
+```sh
+VOICE_PY="$HOME/project/tools/voice/output/voice.py" python3 tests/test_lang_route.py
+```
+
+fixture とテストの説明は [tests/README.en.md](tests/README.en.md) にもある。期待する対応を変更した場合は `tests/fixtures/lang-route.tsv` のキーも更新する。
+
 共通候補は [piper-plus](https://github.com/ayutaz/piper-plus)。公式手順は Apple Silicon 向け配布バイナリとローカル HTTP API を案内している。公式 README に従って導入し、API を localhost のみに bind して起動する。使う声モデルはコードとは別ライセンスなので、モデルカードで商用利用・改変・配布条件を読む。英語と普通話は公開済みモデルの言語・話者から選ぶ。韓国語はコード対応と配布済み学習済み音声を混同せず、使える韓国語モデルが見つからない場合は macOS 標準音声を使う。
 
 macOS 標準音声の導入は、システム設定 → アクセシビリティ → 読み上げコンテンツ（Read & Speak）→ システムの声 → 声を管理（Manage Voices）。対象言語で Enhanced/Premium と表示される声があれば選んでダウンロードする。声名はOS版・地域で違うため固定せず、導入後に `say -v '?'` を実行し、英語・普通話/地域中国語・韓国語の声名を確認する。例は Samantha/Alex、Ting-Ting/Mei-Jia/Sin-ji、Yuna。

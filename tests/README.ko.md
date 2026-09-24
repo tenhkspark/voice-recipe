@@ -59,3 +59,13 @@ AIZUCHI_PYTHON=/path/to/python \
 상주 프로세스가 없으면 smoke의 두 항목은 FAIL이 됩니다 (실행하려면 `AIZUCHI_SERVE`와 `AIZUCHI_MODEL`을 설정해 임시 소켓을 시작합니다). `test_paths.py`와 `e2e_silent.sh`도 단독 실행 시 같은 환경 변수를 읽습니다. 맞장구(aizuchi) 테스트는 가짜 UNIX 소켓을 바인드하므로, 실행 환경에서 UNIX 소켓을 만들 수 있어야 합니다.
 
 `run-all.sh`의 출력은 `항목, 결과, 상세 내역` 및 실패한 라인으로 구성됩니다 (smoke는 상위 12개).
+
+## 언어별 음성 선택 (무음)
+
+일반 `run-all.sh`는 일본어 환경용입니다. 언어 분기를 확인할 때만 `RUN_LANG_ROUTE=1`을 설정하세요.
+
+```sh
+VOICE_PY=/path/to/voice.py RUN_LANG_ROUTE=1 sh tests/run-all.sh
+```
+
+단독 실행: `VOICE_PY=/path/to/voice.py python3 tests/test_lang_route.py`. `VOICE_PY`는 `--select-voice-key <문장>`을 받아 소리를 재생하지 않고 선택한 음성 설정 키를 한 줄로 출력해야 합니다. 테스트는 `VOICE_NO_PLAY=1`도 설정하고 `lang-route.tsv`의 네 문장 각각에서 키가 정확히 일치하는지 확인합니다.

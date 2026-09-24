@@ -373,7 +373,22 @@ AIZUCHI_DIR=$HOME/project/project/voice/aizuchi \
 
 引入 macOS 标准语音的方法为：系统设置 → 辅助功能 → 朗读内容（Read & Speak）→ 系统语音 → 管理语音（Manage Voices）。如果目标语言中有显示为 Enhanced/Premium 的语音，请选择并下载。由于语音名称会因 OS 版本和地区而异，请勿固定名称，安装后请执行 `say -v '?'` 以确认英语、普通话/地区中文及韩语的语音名称。示例包括 Samantha/Alex、Ting-Ting/Mei-Jia/Sin-ji、Yuna。
 
-制作即时响应（Reply）片段时，直接从 `project/voice/aizuchi/reply_map.tsv` 中对应 `lang=en|zh|ko` 的行提取 `text`，并连同语言和语音 ID 一起发送给所选模型的本地 API。将返回的音频保存为每个 `id` 对应的 WAV 文件，并在 manifest 中记录语言、模型、语音、文件及状态 `ok`。正文中的 `text` 不进行翻译或改写，直接使用。如果使用 macOS `say` 命令，请使用 `say -v '<实际存在的语音名称>' -o <file.aiff> '<text>'` 保存，然后通过 `afconvert -f WAVE -d LEI16 <file.aiff> <file.wav>` 转换为 WAV 格式。由于目前的 Aizuchi 即时响应不会将 `lang` 传递给语音选择环节，因此需要另外进行连接修改以实现分语言语音。
+### 按语言选择声音并静音确认
+
+朗读回复、摘要和即时回答之前，先判断待读句子的语言，并将其路由到对应语言的声音：日语使用 AivisSpeech；其他语言使用该语言推荐的 Mac 本地 TTS，或 macOS 自带的相应声音。若不做语言路由，日语声音会被用来朗读其他语言，发音可能严重失真。此处是配置和确认步骤；实际路由需由 voice.py 的实现提供。
+
+Aizuchi 即时回复优先沿用 reply_map 所选回复的 `lang`，并将此语言传给声音选择环节；只有 `lang` 缺失时，才按文本字符种类判定：假名→ja、韩文→ko、汉字→zh、其他→en。不要仅凭回复文本重新推断而覆盖已有的 `lang`。
+
+无须播放声音即可确认路由：从项目根目录运行以下检查。它读取 `tests/fixtures/lang-route.tsv` 中四种语言的示例，通过 `--select-voice-key` 查询选中的声音键，并设置 `VOICE_NO_PLAY=1` 禁止播放。
+
+```sh
+cd ~/project/project/voice-recipe
+VOICE_PY=$HOME/project/tools/voice/output/voice.py python3 tests/test_lang_route.py
+```
+
+四行均显示 `PASS` 且摘要为 `4/4` 时，静音路由检查通过。此检查只确认句子到声音键的选择，不试听或验证发音质量。
+
+制作即时响应（Reply）片段时，直接从 `project/voice/aizuchi/reply_map.tsv` 中对应 `lang=en|zh|ko` 的行提取 `text`，并连同语言和语音 ID 一起发送给所选模型的本地 API。将返回的音频保存为每个 `id` 对应的 WAV 文件，并在 manifest 中记录语言、模型、语音、文件及状态 `ok`。正文中的 `text` 不进行翻译或改写，直接使用。如果使用 macOS `say` 命令，请使用 `say -v '<实际存在的语音名称>' -o <file.aiff> '<text>'` 保存，然后通过 `afconvert -f WAVE -d LEI16 <file.aiff> <file.wav>` 转换为 WAV 格式。
 
 语音词典是改善读音的第一步，应按语言分别创建。英语侧重专有名词和缩写，中文侧重简体/繁体及多音字，韩语侧重外来语、专有名词和数字，并将其注册到所选引擎的词典格式/G2P/音素输入中。AivisSpeech 用的 `readings.tsv` 并不一定可以直接使用。在 piper-plus 的公开基准测试中，有一个小型运行模型文件容量为 38 MB 的例子，但未列出常驻 RSS（常驻内存）的大小。由于 RSS 可能大于模型容量，官方数值尚未确认，请在模型加载后通过 Mac 的活动监视器（Activity Monitor）进行测量。Kokoro 82M 是英语和普通话的另一个候选方案，但官方暂无韩语语音。详情请参阅 [Kokoro](https://github.com/hexgrad/kokoro)。
 

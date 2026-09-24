@@ -7,6 +7,7 @@
 材料（文字だけ）:
 
 - `fixtures/` … Stop の transcript 見本（Claude Code 形式と、それ以外の形式）
+- `fixtures/lang-route.tsv` … 4 言語の文と、選ばれるべき音声設定キー
 - `aizuchi/smoke.tsv` … 意図の正答。正答 0.9 以上、`none` の誤爆 0.01 以下
 - `aizuchi/smoke-dictation.tsv` … 口述。鳴らしてはいけない誤鳴 1% 以下、鳴るべきの取りこぼし 10% 以下
 - `aizuchi/speak_intents.txt` … 即答してよい意図。dictation の「鳴る」はここだけ
@@ -28,6 +29,7 @@
 | `AIZUCHI_SOCK` | run-all | 無し。既存の常駐ソケットを使うときだけ指定する |
 | `AIZUCHI_SERVE` | run-all | 無し。`AIZUCHI_MODEL` と揃えて一時ソケットを起動する |
 | `AIZUCHI_MODEL` | run-all | 無し（モデル本体は同梱しない） |
+| `RUN_LANG_ROUTE` | run-all | 無効。`1` のときだけ言語振り分け試験を追加 |
 
 席名 `test` は印 `t` の契約で、実装がこの文字列のとき印を付ける。マシン固有の席名は入れない。
 
@@ -59,3 +61,13 @@ AIZUCHI_PYTHON=/path/to/python \
 常駐が無いとき、smoke の 2 項目は FAIL になる（起動するなら `AIZUCHI_SERVE` と `AIZUCHI_MODEL`）。`test_paths.py` と `e2e_silent.sh` は単体でも同じ環境変数を読む。相槌試験は偽 UNIX ソケットを bind するため、実行環境で UNIX ソケット作成が許可されている必要がある。
 
 `run-all.sh` の出力は `項目、結果、内訳` と、落ちた行（smoke は先頭 12 件）。
+
+## 言語別の声選択（無音）
+
+通常の `run-all.sh` は日本語環境向けのままです。言語振り分けも確認するときだけ、`RUN_LANG_ROUTE=1` を付けます。
+
+```sh
+VOICE_PY=/path/to/voice.py RUN_LANG_ROUTE=1 sh tests/run-all.sh
+```
+
+単体実行は `VOICE_PY=/path/to/voice.py python3 tests/test_lang_route.py`。`VOICE_PY` は `--select-voice-key <文>` を受け取り、再生せず選択する設定キーを標準出力へ1行返す必要があります。試験は `VOICE_NO_PLAY=1` も設定し、`lang-route.tsv` の4文すべてでキーの完全一致を確認します。

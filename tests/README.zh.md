@@ -59,3 +59,13 @@ AIZUCHI_PYTHON=/path/to/python \
 如果没有常驻进程，smoke 的 2 项会失败（若要启动服务，需设置 `AIZUCHI_SERVE` 和 `AIZUCHI_MODEL`）。`test_paths.py` 和 `e2e_silent.sh` 单独运行时也读取相同的环境变量。相槌测试会绑定一个伪 UNIX socket，因此运行环境必须允许创建 UNIX socket。
 
 `run-all.sh` 的输出包含 `项目、结果、详情` 以及失败的行（smoke 测试的前 12 行）。
+
+## 按语言选择语音（静音）
+
+通常的 `run-all.sh` 面向日语环境。只有需要检查语言分流时才设置 `RUN_LANG_ROUTE=1`。
+
+```sh
+VOICE_PY=/path/to/voice.py RUN_LANG_ROUTE=1 sh tests/run-all.sh
+```
+
+单独运行：`VOICE_PY=/path/to/voice.py python3 tests/test_lang_route.py`。`VOICE_PY` 必须接受 `--select-voice-key <句子>`，不播放声音并将选中的语音设置键单独输出一行。测试也会设置 `VOICE_NO_PLAY=1`，并逐条精确比较 `lang-route.tsv` 中四种语言的预期键。

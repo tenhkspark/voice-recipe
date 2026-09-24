@@ -113,6 +113,20 @@ Gemma 26B 专用（`voice.py` 中的 SUMMARY_PROMPT，OpenAI 兼容 API 请求�
 - earcon（短促提示音）：针对 done/read、attention、error 使用不同的音效。attention/error 可以叠加播放，done 则在播放过程中跳过。
 - 重复抑制（相同的最终句在 30 分钟窗口内不会再次播放）・间隔门控（默认情况下，5 秒内的第二条消息不播放语音，仅播放 earcon）・语音播放期间自动静音。
 
+## 5.1 按文本语言选择声音
+
+对即答、摘要和即时回复正文，先判定实际要朗读的文本所用语言，再把文本交给该语言对应的声音：日语使用 AivisSpeech；其他语言使用该语言推荐的本地 TTS，若没有合适的本地引擎或声音，则使用 macOS 已安装的对应语言系统声音。不得只按输入语言或席位选择声音。多语言文本以本次要朗读的句子为单位判定；即答也按所选回复文本判定。
+
+当前实现状态需如实区分：现行 `voice.py` 的正文与摘要仍使用配置的 AivisSpeech `speaker_id`，合成失败时固定回退到 `/usr/bin/say -v Kyoko`，尚未按语言自动切换。Aizuchi 目前按输入字符范围选择回复语言（假名 ja、韩文 ko、汉字 zh、其他 en；缺少该语言回复时回退 ja），但 `voicein.py` 只将回复文本交给 `voice.speak()`，不会根据 `lang` 选择声音。上述规则是目标规格，不能描述成现有路径已经自动支持。
+
+验证语言到声音的选择时不要播放音频。使用 `tests/fixtures/lang-route.tsv` 中的四种语言和预期 `voice_key`，运行 `tests/test_lang_route.py`；该脚本对每条文本调用 `voice.py --select-voice-key`，设置 `VOICE_NO_PLAY=1`，并检查标准输出的选择结果是否与 fixture 一致。例如：
+
+```sh
+VOICE_PY=/绝对路径/到/voice.py python3 tests/test_lang_route.py
+```
+
+测试应报告 `summary 4/4`，全过程不调用播放设备。新增或更改语言路由时，需同时更新 fixture，并保持此静默检查可验证。
+
 ### 5.5 如何制作预制语音包
 
 预制包（Pre-made pack）是指根据 phrases（回复短语）的内容生成的即时响应语音。目前的 `project/voice/manifest.tsv` 中包含 2,243 条 `aivis-aida` 的 ok 行，同时也包含 `eleven_v3` 和 `eleven_multilingual_v2` 的行。由于 `voice.py` 的默认 pack 为 `eleven_v3`，因此在使用语音包时，需确保 `model`、`lang` 和 `voice` 的设置与 manifest 中的内容一致。在本地生成的示例中可以使用 AivisSpeech，但这并不意味着所有的语音包都是由 AivisSpeech 制作的。

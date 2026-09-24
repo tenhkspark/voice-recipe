@@ -252,3 +252,9 @@ Aizuchi 클립을 만들려면, `project/voice/aizuchi/reply_map.tsv`에서 각 
 우선 [piper-plus](https://github.com/ayutaz/piper-plus)를 살펴본다. 공식 문서는 Apple Silicon macOS, 로컬 HTTP API, MIT 코드 라이선스와 속도/운율·사전/G2P 기능을 안내한다. 공개된 사전 학습 음성은 현재 EN/ZH를 포함한 6개 언어로 정리되어 있다. 한국어는 코드 지원만으로 사용 가능한 학습 음성이 있다고 볼 수 없다. 적절한 한국어 음성과 라이선스를 확인할 수 없다면 macOS의 Yuna(ko-KR)를 최소 대안으로 쓴다. 시스템 설정 → 손쉬운 사용 → 읽기 및 말하기 → 시스템 음성 → 음성 관리에서 Enhanced/Premium 표시가 있는 음성을 내려받는다. 실제 설치된 이름은 `say -v '?'`로 확인한다.
 
 Aizuchi 클립은 `project/voice/aizuchi/reply_map.tsv`의 `lang=ko` 행 `text`를 그대로 로컬 API에 보내고, WAV를 `id`별로 저장해 manifest에 등록한다. 외래어·고유명사·숫자 읽기는 각 엔진의 사전이나 음소 표기를 사용한다. `readings.tsv`를 그대로 가져올 수 있다고 가정하지 않는다. macOS `say`는 최소 대안이며 AivisSpeech와 같은 통합 음성 선택, 운율 조절, 사용자 사전, 로컬 TTS API를 제공하지 않는다.
+
+### 답변·요약·즉답의 언어별 음성 라우팅
+
+답변 본문, 요약, 즉답으로 읽을 문장 각각의 언어를 판정하고, 그 언어에 맞는 음성 설정으로 라우팅한다. 일본어 문장은 AivisSpeech를 사용한다. 그 밖의 언어는 언어별로 권장한 Mac 로컬 TTS와 해당 언어의 음성을 우선 사용하고, 쓸 수 있는 로컬 모델이 없으면 macOS 표준 `say`에서 해당 언어의 설치된 음성을 고른다. 영어·중국어·한국어의 후보와 제한은 위의 선택지 표를 따른다. 문장 언어 판정 결과는 음성 키 `ja → voice_ja`, `en → voice_en`, `zh → voice_zh`, `ko → voice_ko`로 연결한다. 이는 본문과 요약에도 적용하며, Aizuchi가 선택한 답변 언어도 같은 규칙으로 음성 선택에 전달한다. 글에 섞인 문자만 보고 무조건 AivisSpeech를 쓰거나, 모든 언어를 하나의 고정 음성으로 보내지 않는다.
+
+실제 연결을 바꾼 뒤에는 소리를 내지 않는 확인 모드로 언어 라우팅을 검사한다. `tests/fixtures/lang-route.tsv`에는 일본어·영어·중국어·한국어 예문과 기대 음성 키가 있고, `tests/test_lang_route.py`는 각 문장을 `--select-voice-key`에 전달해 출력된 키가 기대값과 정확히 같은지 확인한다. `VOICE_NO_PLAY=1`도 설정되므로 음성은 재생되지 않는다. 실행 예: `VOICE_PY=/path/to/voice.py python3 tests/test_lang_route.py`.

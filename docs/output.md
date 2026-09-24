@@ -190,6 +190,18 @@ Use your own recordings or datasets and voices that explicitly permit training, 
 - 返事本文・要約は `voice.py` が設定の `speaker_id` でローカル AivisSpeech API（既定 `127.0.0.1:10101`）へ送り、再生する。現在の声選択に言語判定はなく、AivisSpeech が使えない場合は常に `/usr/bin/say -v Kyoko` に落ちる。したがって英語・中国語・韓国語の本文も、言語別に声を切り替えず、日本語話者 ID／Kyoko で鳴る。
 - Aizuchi は入力文字の範囲を見て、かな→ja、ハングル→ko、漢字→zh、それ以外→en と判定する。該当言語の返事候補が無い場合だけ ja に戻す。reply_map の `text` を選んだあと `voicein.py` はその文字列を `voice.speak()` に渡すだけで、`lang` を声選択には使わない。返事クリップの ID があっても、voice.py のパック照合設定・manifest に一致する必要があり、Aizuchi 自体が言語声を選ぶわけではない。
 
+### 必須の言語別音声ルーティング
+
+返事本文・要約・即答の各文について、合成する文そのものの言語を判定し、その言語に対応する声へ振り分ける。日本語は AivisSpeech を使い、英語・中国語・韓国語など他の言語は各言語で利用できるおすすめのローカル TTS を選ぶ。対応する TTS が使えない場合は、その言語に合う macOS 標準の声を使う。文ごとに判定するため、一つの返事に複数言語が含まれる場合も各文を適切な声で読む。この仕様は必要な動作を示すもので、上記「実物の現在の動作」に記載した現行コードがすでに自動切替するという意味ではない。
+
+言語振り分けを音を鳴らさず確認するには、リポジトリルートで次を実行する。各例文に対し `voice.py --select-voice-key` が返すキーを fixture の期待値と比較する。`VOICE_NO_PLAY=1` を設定した確認で、TTS 合成・再生は行わない。
+
+```sh
+VOICE_PY=tools/voice/output/voice.py python3 tests/test_lang_route.py
+```
+
+テストデータは `tests/fixtures/lang-route.tsv`（言語・例文・期待する声キー）で、確認処理は `tests/test_lang_route.py` にある。日本語は `voice_ja`、英語は `voice_en`、中国語は `voice_zh`、韓国語は `voice_ko` が期待値。
+
 ### 選択肢と推奨
 
 英語・中国語・韓国語とも、まず Mac 上で動くローカル TTS アプリ／エンジンを使う。ここでは [piper-plus](https://github.com/ayutaz/piper-plus) を共通候補として挙げる。プロジェクトは Apple Silicon macOS バイナリ、ローカル HTTP API、MIT コードライセンスを案内し、話者選択・速度などの調整・辞書機能を持つ。ただし、同プロジェクトの公開済み学習済み音声は現在 JA/EN/ZH/ES/FR/PT の6言語で、韓国語はコード対応と学習済み声の公開が同義ではない。韓国語は後述の音声モデルの公開状況を確認し、使えるモデルが無ければ macOS の声を使う。
@@ -228,6 +240,18 @@ Apple の公式手順は[追加音声を管理・ダウンロード](https://sup
 The author (Japanese) uses AivisSpeech, but AivisSpeech is Japanese-only. For English, Chinese, and Korean, use a Mac-local speech synthesizer with a similar role.
 
 The current `voice.py` uses its configured AivisSpeech speaker ID regardless of language and falls back to `/usr/bin/say -v Kyoko`; the Aizuchi classifier selects reply text by script (`ja` kana, `ko` Hangul, `zh` Han, otherwise `en`) but passes only the text to `voice.speak()`. It does not select a language-specific voice.
+
+### Required language routing
+
+Determine the language of every sentence in the reply body, summary, and instant Aizuchi response, then route it to the voice for that language. Use AivisSpeech for Japanese. For other languages, use a recommended local TTS that supports that language, or a matching built-in macOS voice when that TTS is unavailable. Make the decision per sentence so a multilingual reply can use the appropriate voice for each sentence. This is the required behavior; it does not claim that the current code described above already switches voices automatically.
+
+Verify language routing without playing audio from the repository root:
+
+```sh
+VOICE_PY=tools/voice/output/voice.py python3 tests/test_lang_route.py
+```
+
+The test reads `tests/fixtures/lang-route.tsv` (language, sample text, expected voice key) and calls `voice.py --select-voice-key` with `VOICE_NO_PLAY=1`. It compares the returned key with the fixture; expected keys are `voice_ja`, `voice_en`, `voice_zh`, and `voice_ko`. This check does not synthesize or play audio.
 
 Recommended common candidate: [piper-plus](https://github.com/ayutaz/piper-plus), which documents Apple Silicon macOS, a local HTTP API, and MIT-licensed code. It provides voice, prosody/speed, and dictionary/G2P features, but model availability and model licensing are separate from code support. Its published pretrained list currently covers EN and ZH among six languages; Korean is code-supported but not established as an available pretrained voice. For Korean, use macOS Yuna (ko-KR) as the fallback unless a suitable licensed model is available. Install system voices in System Settings → Accessibility → Read & Speak → System Voice → Manage Voices and choose an Enhanced/Premium download where offered. Example names include Samantha/Alex (English), Ting-Ting (Mandarin), and Yuna (Korean); inspect `say -v '?'` for the installed names on your OS.
 
