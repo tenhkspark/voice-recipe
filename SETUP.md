@@ -374,6 +374,18 @@ AIZUCHI_DIR=$HOME/project/project/voice/aizuchi \
 
 同じ 4 項目を、パス固定の本番スクリプトでも回せる: `sh ~/project/tools/voice/output/tests/run-all.sh`。
 
+## 9. 日本語以外の音声（英語・中国語・韓国語）
+
+作者（日本語）は AivisSpeech を使っているが、AivisSpeech は日本語専用。英語・中国語・韓国語では同じような役割のものを使う。候補比較・現在の voice.py の言語別挙動・辞書の注意は [docs/output.md の「日本語以外の声」](docs/output.md#日本語以外の声英語中国語韓国語) を参照。
+
+共通候補は [piper-plus](https://github.com/ayutaz/piper-plus)。公式手順は Apple Silicon 向け配布バイナリとローカル HTTP API を案内している。公式 README に従って導入し、API を localhost のみに bind して起動する。使う声モデルはコードとは別ライセンスなので、モデルカードで商用利用・改変・配布条件を読む。英語と普通話は公開済みモデルの言語・話者から選ぶ。韓国語はコード対応と配布済み学習済み音声を混同せず、使える韓国語モデルが見つからない場合は macOS 標準音声を使う。
+
+macOS 標準音声の導入は、システム設定 → アクセシビリティ → 読み上げコンテンツ（Read & Speak）→ システムの声 → 声を管理（Manage Voices）。対象言語で Enhanced/Premium と表示される声があれば選んでダウンロードする。声名はOS版・地域で違うため固定せず、導入後に `say -v '?'` を実行し、英語・普通話/地域中国語・韓国語の声名を確認する。例は Samantha/Alex、Ting-Ting/Mei-Jia/Sin-ji、Yuna。
+
+即答クリップを作るときは `project/voice/aizuchi/reply_map.tsv` の `lang=en|zh|ko` に該当する行から `text` をそのまま取り出し、選んだモデルのローカル API に言語・声 ID と一緒に渡す。返った音声を `id` ごとの WAV として保存し、manifest に言語・モデル・声・ファイル・状態 `ok` を記録する。本文の `text` は翻訳・言い換えず使用する。macOS `say` を使う場合は同じ文面を `say -v '<実在する声名>' -o <file.aiff> '<text>'` で保存し、`afconvert -f WAVE -d LEI16 <file.aiff> <file.wav>` で WAV に変換する。Aizuchi 即答は現状 `lang` を声選択へ渡さないため、言語別音声にする接続変更が別途必要。
+
+声辞書は読みを改善する第一歩として言語ごとに作る。英語は固有名詞・略語、中国語は簡体字/繁体字・多音字、韓国語は外来語・固有名詞・数字を集め、選んだエンジンの辞書形式/G2P/音素入力へ登録する。AivisSpeech 用 `readings.tsv` がそのまま使えるとは限らない。piper-plus の公開ベンチマークには小型実行モデルのファイル容量 38 MB の例があるが、常駐 RSS は掲載されていない。RSS はモデル容量より大きくなり得るため公式値は未確認とし、Mac のアクティビティモニタでモデル読込後を測る。Kokoro 82M は英語・普通話向けの別候補だが、韓国語には公式声がない。詳しくは [Kokoro](https://github.com/hexgrad/kokoro) を参照。
+
 ### 声で「ただいま」
 
 1. Aivis が 10101、Aizuchi ソケット、Hammerspoon が生きている。

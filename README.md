@@ -8,6 +8,8 @@ A recipe to give Claude Code or Pi a voice layer on a Mac: voice input, instant 
 
 ## 日本語
 
+多言語の音声出力（英語・中国語・韓国語）は [docs/output.md](docs/output.md) の「日本語以外の声」を参照。
+
 ### 何ができるか
 
 1. **即答** — こちらが話した直後に、挨拶・感謝・謝罪・感情などの短い定形返事を鳴らす。それ以外は黙る。
