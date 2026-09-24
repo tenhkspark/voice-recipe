@@ -2,7 +2,7 @@
 
 短い発話を意図に分け、挨拶・感謝・謝罪・感情だけ即答する分類器の手順。学習済みの重みは同梱しない。土台モデルを取り、自分の LLM で例文を作り、自分で学習する。数字は作者の実測（2026-09-24、記録は `progress-aizuchi.md`（旧 `(internal record)`）・`progress-aizuchi-wire.md`・`(internal record)`・`runall-first.md`、および `aizuchi/` のファイル件数）。計測が無いところは書かない。
 
-合格の材料は [tests/aizuchi/](tests/aizuchi/)（`smoke.tsv` 252 行、`smoke-dictation.tsv` 800 行、`speak_intents.txt`）。`speak_intents.txt` は `aizuchi/speak_intents.txt` の固定コピーで、残る同名テスト TSV も作者側とバイト一致する。
+合格の材料は [tests/aizuchi/](../tests/aizuchi/)（`smoke.tsv` 252 行、`smoke-dictation.tsv` 800 行、`speak_intents.txt`）。`speak_intents.txt` は `aizuchi/speak_intents.txt` の固定コピーで、残る同名テスト TSV も作者側とバイト一致する。
 
 ---
 
@@ -150,7 +150,7 @@ UNIX ソケット。作者の既定パスは `~/.config/voice/aizuchi.sock`。1 
 
 初回の採用閾値は 0.5だったが、現行閾値は口述試験の調整後の **0.38**。現行値の測定は初回値の測定と区別し、変えるときは dev の誤爆と smoke を両方見る。
 
-[tests/](tests/) の run-all は音を出さない。即答の 2 項目は常駐ソケット（無ければ `AIZUCHI_SERVE` と `AIZUCHI_MODEL` で一時ソケット）に `tests/aizuchi/` の TSV を投げる。モデル本体はテストに入っていない。ソケットが無ければこの 2 項目は不合格。
+[tests/](../tests/) の run-all は音を出さない。即答の 2 項目は常駐ソケット（無ければ `AIZUCHI_SERVE` と `AIZUCHI_MODEL` で一時ソケット）に `tests/aizuchi/` の TSV を投げる。モデル本体はテストに入っていない。ソケットが無ければこの 2 項目は不合格。
 
 | 材料 | 合格 |
 |---|---|
@@ -335,7 +335,7 @@ Voice input sends one line as soon as text exists. The author's `voicein` waits 
 
 The initial threshold was 0.5; the current value is **0.38** after the dictation test adjustment. Keep current measurements separate from the initial run, and review both dev misfires and smoke when changing it.
 
-run-all in [tests/](tests/) plays no audio. The two instant-reply rows send `tests/aizuchi/` at a resident socket (or a temporary socket from `AIZUCHI_SERVE` plus `AIZUCHI_MODEL`). The model file is not in the tests. With no socket, those two rows fail.
+run-all in [tests/](../tests/) plays no audio. The two instant-reply rows send `tests/aizuchi/` at a resident socket (or a temporary socket from `AIZUCHI_SERVE` plus `AIZUCHI_MODEL`). The model file is not in the tests. With no socket, those two rows fail.
 
 | Fixture | Pass |
 |---|---|
