@@ -4,6 +4,8 @@
 
 짧은 발화를 의도별로 나누어 인사, 감사, 사과, 감정만을 즉각 응답하는 분류기를 만드는 절차입니다. 학습된 가중치는 포함되어 있지 않습니다. 베이스 모델을 가져온 뒤, 본인의 LLM으로 예문을 생성하고 직접 학습시키십시오. 숫자는 제작자의 실측치입니다 (2026-09-24, 기록은 `progress-aizuchi.md` (구 `(internal record)`), `progress-aizuchi-wire.md`, `(internal record)`, `runall-first.md` 및 `aizuchi/` 디렉토리 내 파일 개수). 측정되지 않은 부분은 기재하지 않았습니다.
 
+**주의:** Aizuchi의 기반 모델은 일본어 전용 모델(`sbintuitions/modernbert-ja-130m`)입니다. 영어·중국어·한국어도 학습했지만 일본어보다 정확도가 낮고, 특히 한국어에서 더 낮습니다. `smoke-dictation`에서 각 언어 50개 발화, 임계값 0.38로 측정한 누락은 일본어 2/50 (4%), 영어 2/50 (4%), 중국어 4/50 (8%), 한국어 10/50 (20%)입니다. 잘못 소리가 난 발화는 모든 언어에서 0/600입니다. 일본어 이외의 언어로 사용하려면 다국어 기반 모델로 다시 학습하는 것을 권장합니다.
+
 합격 기준은 [tests/aizuchi/](../tests/aizuchi/)입니다 (`smoke.tsv` 252행, `smoke-dictation.tsv` 800행, `speak_intents.txt`). `speak_intents.txt`는 `aizuchi/speak_intents.txt`의 고정 복사본이며, 나머지 동일한 이름의 테스트 TSV 파일들도 제작자 측 파일과 바이트 단위로 일치합니다.
 
 ---

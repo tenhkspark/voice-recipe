@@ -12,6 +12,8 @@
 
 ## 1. 何をするか
 
+> **注意:** 土台の `sbintuitions/modernbert-ja-130m` は日本語専用モデル。英語・中国語・韓国語も学習させているが、日本語より精度が落ち、とくに韓国語で落ちる。`smoke-dictation`（各言語 50 本、閾値 0.38）の鳴るべき発話の取りこぼしは、日本語 2/50（4%）、英語 2/50（4%）、中国語 4/50（8%）、韓国語 10/50（20%）。全言語の誤鳴りは 0/600。日本語以外で使う場合は、多言語の土台で学び直すことをすすめる。
+
 ```
 発話 1 行（ja / en / zh / ko）
   → 分類器（54 意図 + none）
@@ -202,6 +204,8 @@ Aizuchi が返事に付ける `lang` と、音声再生側が選ぶエンジン�
 # English
 
 ## 1. What it does
+
+> **Caution:** The base, `sbintuitions/modernbert-ja-130m`, is Japanese-only. English, Chinese, and Korean were also included in training, but accuracy is lower than for Japanese, especially for Korean. In `smoke-dictation` (50 utterances per language, threshold 0.38), missed utterances that should trigger a reply were Japanese 2/50 (4%), English 2/50 (4%), Chinese 4/50 (8%), and Korean 10/50 (20%). False triggers were 0/600 across all languages. For use outside Japanese, retraining on a multilingual base is recommended.
 
 ```
 one utterance line (ja / en / zh / ko)

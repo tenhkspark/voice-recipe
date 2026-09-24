@@ -4,6 +4,8 @@
 
 将短句拆分为意图，并仅针对问候、感谢、道歉、情感进行即时响应的分类器制作流程。本文不包含已训练好的权重。流程为：获取基础模型，使用自己的 LLM 生成示例，并进行自主训练。数字为作者实测值（2026-09-24，记录于 `progress-aizuchi.md`（原 `(internal record)`）・`progress-aizuchi-wire.md`・`(internal record)`・`runall-first.md` 以及 `aizuchi/` 中的文件数量）。未进行测量的部分不予列出。
 
+> 注意：Aizuchi 的基础模型是仅面向日语的模型（sbintuitions/modernbert-ja-130m）。虽然也用英语、中文和韩语进行了训练，但这些语言的准确率低于日语，尤其是韩语。按 `smoke-dictation` 测试（每种语言 50 条，阈值 0.38），应响应的发言漏检情况为：日语 2/50（4%）、英语 2/50（4%）、中文 4/50（8%）、韩语 10/50（20%）。所有语言的误触发均为 0/600。建议需要使用日语以外语言时，改用多语言基础模型重新训练。
+
 合格的标准依据为 [tests/aizuchi/](../tests/aizuchi/)（`smoke.tsv` 252 行、`smoke-dictation.tsv` 800 行、`speak_intents.txt`）。`speak_intents.txt` 是 `aizuchi/speak_intents.txt` 的固定副本，其余同名的测试 TSV 文件也与作者侧的文件保持字节一致。
 
 ---
