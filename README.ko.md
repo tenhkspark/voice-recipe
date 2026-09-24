@@ -38,13 +38,13 @@ Mac에서 Claude Code나 Pi에 음성 레이어를 추가하는 레시피: 음�
 |---|---|---|
 | DGX Spark 등 GPU 장비가 있는 경우 | 자체 제작 Gemma 4 ([tenhkspark/gemma4-spark](https://github.com/tenhkspark/gemma4-spark)) | 요약 약 1.7초. 제작자의 구성 |
 | Mac 전용 · Apple Intelligence 사용 가능 지역 | Apple 모델 | 별도 설정 불필요 |
-| Mac 전용 · 사용 불가능 지역 | MLX Gemma 4 E4B 4bit (`mlx-community/gemma-4-e4b-it-4bit`, 사고 모드 OFF, 지시문은 안 2 사용) | 요약 약 1.9초, 상주 메모리 약 4.5GB. 요점 누락은 안 2 사용 시 0/10 |
+| Mac 전용 · Apple Intelligence를 사용할 수 없는 지역 | MLX Gemma 4 E4B 4bit (`mlx-community/gemma-4-e4b-it-4bit`, 사고 모드 OFF, 지시문은 안 2 사용) | 요약 약 1.9초, 상주 메모리 약 4.5GB. 요점 누락은 안 2 사용 시 0/10 |
 | 메모리 8GB Mac · AI를 사용하지 않는 경우 | 규칙 기반 읽어주기 | 아래의 「8GB Mac」 설정 참고. 음성은 AivisSpeech(상주 메모리 약 1GB) 또는 macOS 표준 `say` |
 | 이미 Ollama / LM Studio / 기타 OpenAI 호환 서버를 실행 중인 경우 | 해당 연결 대상 지정 | `summarizer`를 `openai`로, `summarizer_base`에 URL 입력 |
 
 #### 메모리 8GB Mac
 
-LLM을 사용하지 않고, `~/.config/voice/config.json`에 다음과 같이 설정한다. `summarizer: "off"`로 요약기를 호출하지 않도록 하고, `rewrite: false`로 재작성도 중단한다. 긴 답변은 `voice.py`의 규칙에 따라 정렬되며, 표의 행이나 경로 등을 제외하고 앞의 2문장을 읽는다 (1문장만 읽도록 하는 설정 키는 없다). AivisSpeech는 약 1GB의 메모리를 상주 점유한다. 더 가볍게 만들려면 AivisSpeech를 사용하지 않고 macOS 표준 `say` 명령어로 폴백(fallback)하도록 설정한다. Aizuchi는 약 0.39GB((internal) 실측치)를 상주 점유하며, 음성 입력 시 `--no-aizuchi`를 붙이면 중지할 수 있다.
+LLM을 사용하지 않고, `~/.config/voice/config.json`에 다음과 같이 설정한다. `summarizer: "off"`로 요약기를 호출하지 않도록 하고, `rewrite: false`로 재작성도 중단한다. 긴 답변은 `voice.py`의 규칙에 따라 다듬어지며, 표의 행이나 경로 등을 제외하고 앞의 2문장을 읽는다 (1문장만 읽도록 하는 설정 키는 없다). AivisSpeech는 약 1GB의 메모리를 상주 점유한다. 더 가볍게 만들려면 AivisSpeech를 사용하지 않고 macOS 표준 `say` 명령어로 폴백(fallback)하도록 설정한다. Aizuchi는 약 0.39GB((internal) 실측치)를 상주 점유하며, 음성 입력 시 `--no-aizuchi`를 붙이면 중지할 수 있다.
 
 ```json
 {
@@ -56,7 +56,7 @@ LLM을 사용하지 않고, `~/.config/voice/config.json`에 다음과 같이 �
 
 이 설정에서는 긴 답변을 내용에 맞춰 요약할 수 없으므로, 앞부분의 문장만으로는 요점을 놓칠 수 있다.
 
-작성자는 일본어 전용인 AivisSpeech를 사용합니다. 작성자의 구성은 자체 호스팅 Gemma 4, a USB wireless microphone (Mac 상의 이름은 the USB receiver, 48 kHz), 아이다 시게루(an AivisHub voice model)입니다.
+작성자의 구성은 자체 제작 Gemma 4, a USB wireless microphone (Mac 상의 이름은 the USB receiver, 48 kHz), an AivisHub voice model입니다.
 
 - **Claude Code** — `tools/voice/output/voice-reply.sh`와 `voice-notify.sh`를 `~/.claude/settings.json`의 Stop / Notification hook으로 등록하세요. 설정 예시와 설치 절차는 [SETUP.ko.md](SETUP.ko.md)를 참조하세요.
 - **Pi** — 확장 프로그램 코드는 `tools/harness/voice-pi.ts`입니다. Pi 확장 디렉터리에 설치하고 활성화하는 방법은 [SETUP.ko.md](SETUP.ko.md)를 참조하세요. 응답 완료와 여러 확인 대기 경로를 처리합니다.

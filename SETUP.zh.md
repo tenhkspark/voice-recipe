@@ -201,11 +201,11 @@ Aivis 的连接地址由环境变量 `VOICE_AIVIS_BASE` 指定（未设置时为
 5. `ln -sf ~/project/tools/voice/input/voicein.py ~/.local/bin/voicein`
 6. 在菜单栏选择 Hammerspoon → Reload Config。启动时的警报表示 PTT 已启动。
 
-`init.lua` 中的 Lua 路径示例：`VOICEIN = os.getenv("HOME") .. "/.local/bin/voicein"`。录音显示是通过 Hammerspoon canvas 绘制的波形 Pill，无需图像文件。配置中保留了指定任意 Mascot 图像 `~/project/tools/voice/input/indicator.png` 的部分，但由于该文件目前不存在，将不带图像进行显示。停止朗读需执行 `~/project/tools/voice/output/voice.py stop`。每次开始录音时，都会异步调用 `voice.py stop`（用于中断）。静音快捷键为 Cmd+Ctrl+.（`hs.hotkey.bind({"cmd", "ctrl"}, ".")` → `voice.py stop`）。
+`init.lua` 中的 Lua 路径示例：`VOICEIN = os.getenv("HOME") .. "/.local/bin/voicein"`。录音显示是通过 Hammerspoon canvas 绘制的胶囊形波形指示条，无需图像文件。配置中保留了指定任意吉祥物图像 `~/project/tools/voice/input/indicator.png` 的部分，但由于该文件目前不存在，将不带图像进行显示。停止朗读需执行 `~/project/tools/voice/output/voice.py stop`。每次开始录音时，都会异步调用 `voice.py stop`（用于中断）。静音快捷键为 Cmd+Ctrl+.（`hs.hotkey.bind({"cmd", "ctrl"}, ".")` → `voice.py stop`）。
 
 ### 辅助功能（Accessibility）
 
-为了让 `hs.eventtap.keyStrokes` / `keyStroke` 能够进行前置输入，以及让右侧 Option 键的 `eventtap` 生效，需要**将 Hammerspoon 添加到辅助功能列表中**。
+为了让 `hs.eventtap.keyStrokes` / `keyStroke` 能够向前台应用直接输入按键，以及让右侧 Option 键的 `eventtap` 生效，需要**将 Hammerspoon 添加到辅助功能列表中**。
 
 1. 启动一次 Hammerspoon（可能会弹出权限提示对话框）。
 2. 在 **系统设置 → 隐私与安全性 → 辅助功能** 中勾选 Hammerspoon。
@@ -223,20 +223,20 @@ Aivis 的连接地址由环境变量 `VOICE_AIVIS_BASE` 指定（未设置时为
 | 1 | 仅在按下右 Option 时 | `hs.eventtap`（右 Option 的 `flagsChanged`）→ `startRec` / `stopRec()` | `voicein --ptt start` / `stop`。持续到松开为止。上限 90 秒 | 不按 |
 | 2 | 对应的接收器按钮 (F18) | `hs.hotkey.bind({}, "f18")`。切换模式。识别期间的连击会被忽略。0.5 秒防抖 | 第 1 次按下 `startRec("button")`，第 2 次按下 `stopRec(true)` | 按下（等待 150ms 后 `return`） |
 
-**1. 右 Option (PTT)** — 仅在按住时进行录音。回调函数仅处理 Flag 判断，耗时操作通过 `hs.timer.doAfter(0, …)` 处理。需保持监控对象的引用，以防被 GC 回收。
+**1. 右 Option (PTT)** — 仅在按住时进行录音。回调函数仅处理标志位判断，耗时操作通过 `hs.timer.doAfter(0, …)` 处理。需保持监控对象的引用，以防被 GC 回收。
 
 **2. 接收器按钮 = F18** — F18 的来源是 `init.lua` 中的 `hidutil` 重映射（不使用 Karabiner）。
 
 路径：接收器按钮 → USB 接收器发出的事件 → 通过 `/usr/bin/hidutil property` 仅将目标设备映射为 F18 → `hs.hotkey.bind({}, "f18")`。USB 设备 ID 和发出的事件需根据所使用的设备进行确认。为了不影响键盘本身，仅针对特定设备进行映射。在重映射会失效的环境中，需在 Hammerspoon 启动时及设备连接后重新应用。
 
-**已删除：常时监听 (Always-on Listen)** — `init.lua` 中仍残留有通过 `hs.task.new(VOICEIN, nil, {"--listen"})` 启动 `VoiceinListen.startDaemon()` 子进程的代码。但 `VoiceinListen.daemonEnabled` 已设为 **`false`**（2026-08-02 冻结）。即使将其启用，由于此 Mac 上的 `voicein.py` 在接收到 `--listen` 参数时会提示“常时监听功能已于 2026-09-07 删除（决定 D182）”并退出，因此这不再是现有的输入路径。
+**已删除：常驻监听 (Always-on Listen)** — `init.lua` 中仍残留有通过 `hs.task.new(VOICEIN, nil, {"--listen"})` 启动 `VoiceinListen.startDaemon()` 子进程的代码。但 `VoiceinListen.daemonEnabled` 已设为 **`false`**（2026-08-02 冻结）。即使将其启用，由于此 Mac 上的 `voicein.py` 在接收到 `--listen` 参数时会提示“常驻监听功能已于 2026-09-07 删除（决定 D182）”并退出，因此这不再是现有的输入路径。
 
 ### 粘滞检测与 eventtap 的自动恢复
 
 `VoiceinPTT.watchdog`（每 1 秒执行一次）：
 
 - 如果 `flagWatcher:isEnabled()` 为 false，则执行 `flagWatcher:start()`（eventtap 自动恢复）。控制台输出 `voicein PTT: eventtap自动恢复`。
-- 如果正在录音、起点为 `"ptt"` 且当前 Option 键已释放 → 执行 `stopRec()`（粘滞检测。用于处理漏掉释放事件时的恢复）。不适用于按钮起点（为了应对 1 秒内杀掉切换录音模式的实际 Bug。按钮端的保险机制为 90 秒上限）。
+- 如果正在录音、起点为 `"ptt"` 且当前 Option 键已释放 → 执行 `stopRec()`（粘滞检测。用于处理漏掉释放事件时的恢复）。不适用于按钮起点（为了应对 1 秒内杀掉切换录音模式的实际问题。按钮端的保险机制为 90 秒上限）。
 
 在休眠/解锁（`hs.caffeinate.watcher` 的 `systemDidWake` / `screensDidUnlock`）时，如果 `flagWatcher` 已断开，也会进行重建。
 
@@ -248,7 +248,7 @@ Aivis 的连接地址由环境变量 `VOICE_AIVIS_BASE` 指定（未设置时为
 
 放入 LaunchAgent 后，需要 **重新登录一次**，或者直接使用 `launchctl bootstrap` 进行加载。
 
-### Aivis Engine — `~/Library/LaunchAgents/local.voice.aivis.plist`
+### Aivis 引擎 — `~/Library/LaunchAgents/local.voice.aivis.plist`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -339,7 +339,7 @@ mkdir -p ~/.pi/agent/extensions
 ln -sf ~/project/tools/pi/extensions/voice.ts ~/.pi/agent/extensions/voice.ts
 ```
 
-实现的实体是 `tools/harness/voice-pi.ts`。请根据各自的 checkout 情况确认实际的存放路径和链接目标。
+实现的实体是 `tools/harness/voice-pi.ts`。请根据各自的代码检出目录确认实际的存放路径和链接目标。
 
 ## 10. 确认
 
@@ -367,9 +367,9 @@ AIZUCHI_DIR=$HOME/project/project/voice/aizuchi \
 
 ## 9. 非日语语音（英语、中文、韩语）
 
-作者（日语）使用的是 AivisSpeech，但 AivisSpeech 仅支持日语。对于英语、中文和韩语，需使用具有类似功能的工具。关于候选方案对比、当前 `voice.py` 的分语言行为以及词典注意事项，请参阅 [docs/output.zh.md 中的“非日语语音”](docs/output.zh.md#非日语的声音英语中文韩语)。
+作者（日语使用者）使用的是 AivisSpeech，但 AivisSpeech 仅支持日语。对于英语、中文和韩语，需使用具有类似功能的工具。关于候选方案对比、当前 `voice.py` 的分语言行为以及词典注意事项，请参阅 [docs/output.zh.md 中的“非日语语音”](docs/output.zh.md#非日语的声音英语中文韩语)。
 
-通用的候选方案是 [piper-plus](https://github.com/ayutaz/piper-plus)。官方指南提供了适用于 Apple Silicon 的分发二进制文件和本地 HTTP API。请按照官方 README 进行安装，并将其绑定（bind）至 `localhost` 启动。所使用的语音模型遵循不同的许可协议，请务必阅读模型卡（Model Card）以了解商用、修改及分发的条件。英语和普通话请从已发布的模型语言和说话人中进行选择。韩语方面，请不要混淆代码支持与已分发的预训练语音；如果找不到可用的韩语模型，请使用 macOS 标准语音。
+通用的候选方案是 [piper-plus](https://github.com/ayutaz/piper-plus)。官方指南提供了适用于 Apple Silicon 的分发二进制文件和本地 HTTP API。请按照官方 README 进行安装，并将其绑定到 `localhost` 后启动。所使用的语音模型遵循各自的许可协议，请务必阅读模型卡（Model Card）以了解商用、修改及分发的条件。英语和普通话请从已发布的模型语言和说话人中进行选择。韩语方面，请不要混淆代码支持与已分发的预训练语音；如果找不到可用的韩语模型，请使用 macOS 标准语音。
 
 引入 macOS 标准语音的方法为：系统设置 → 辅助功能 → 朗读内容（Read & Speak）→ 系统语音 → 管理语音（Manage Voices）。如果目标语言中有显示为 Enhanced/Premium 的语音，请选择并下载。由于语音名称会因 OS 版本和地区而异，请勿固定名称，安装后请执行 `say -v '?'` 以确认英语、普通话/地区中文及韩语的语音名称。示例包括 Samantha/Alex、Ting-Ting/Mei-Jia/Sin-ji、Yuna。
 

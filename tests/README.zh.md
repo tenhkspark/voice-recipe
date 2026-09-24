@@ -16,7 +16,7 @@
 | 变量 | 使用测试 | 默认值 |
 | --- | --- | --- |
 | `VOICE_PY` | test_paths / e2e | 必填。test_paths 也可以通过 `--voice` 传递。此 checkout 中不存在相邻的 `../voice.py` |
-| `VOICE_REPLY` | e2e | 无（Stop 口。若文件不存在则 SKIP） |
+| `VOICE_REPLY` | e2e | 无（Stop 钩子。若文件不存在则 SKIP） |
 | `VOICE_IN` | e2e | 无（`voicein.py`。若不存在则跳过相应的相槌测试） |
 | `VOICE_TEST_SEAT` | test_paths | `seat-a`（允许发声的座位） |
 | `VOICE_TEST_OTHER_SEAT` | test_paths / e2e | `other-seat` |
@@ -41,7 +41,7 @@ cd /path/to/voice-recipe
 # 仅测试路径（voice.py）
 VOICE_PY=/path/to/voice.py python3 tests/test_paths.py
 
-# 从 Stop 到相槌。音频播放由静音替身代替
+# 从 Stop 钩子到相槌。音频播放由静音测试桩代替
 VOICE_PY=/path/to/voice.py \
 VOICE_REPLY=/path/to/voice-reply.sh \
 VOICE_IN=/path/to/voicein.py \

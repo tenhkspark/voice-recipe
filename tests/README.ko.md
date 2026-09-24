@@ -6,7 +6,7 @@
 
 재료 (텍스트만):
 
-- `fixtures/` … Stop의 transcript 샘플 (Claude Code 형식 및 그 외 형식)
+- `fixtures/` … Stop의 전사문 샘플 (Claude Code 형식 및 그 외 형식)
 - `aizuchi/smoke.tsv` … 의도 분류 정답. 정답률 0.9 이상, `none` 오탐률 0.01 이하
 - `aizuchi/smoke-dictation.tsv` … 받아쓰기. 울리면 안 되는 경우의 오탐률 1% 이하, 울려야 하는 경우의 미탐률 10% 이하
 - `aizuchi/speak_intents.txt` … 즉시 응답해도 되는 의도. 받아쓰기에서 울리는 경우는 여기 있는 의도에만 해당
@@ -15,7 +15,7 @@
 
 | 변수 | 사용 테스트 | 기본값 |
 | --- | --- | --- |
-| `VOICE_PY` | test_paths / e2e | 필수. test_paths에서는 `--voice`로도 전달 가능. 이 checkout에는 인접한 `../voice.py`가 없음 |
+| `VOICE_PY` | test_paths / e2e | 필수. test_paths에서는 `--voice`로도 전달 가능. 이 작업 트리에는 인접한 `../voice.py`가 없음 |
 | `VOICE_REPLY` | e2e | 없음 (Stop 응답 스크립트. 파일이 없으면 SKIP) |
 | `VOICE_IN` | e2e | 없음 (`voicein.py`. 없으면 맞장구(aizuchi) 테스트는 SKIP) |
 | `VOICE_TEST_SEAT` | test_paths | `seat-a` (소리가 나도 되는 좌석) |
@@ -56,6 +56,6 @@ AIZUCHI_PYTHON=/path/to/python \
   sh tests/run-all.sh
 ```
 
-상주 프로세스가 없으면 smoke의 두 항목은 FAIL이 됩니다 (`AIZUCHI_SERVE`와 `AIZUCHI_MODEL`이 실행 중이어야 합니다). `test_paths.py`와 `e2e_silent.sh`도 단독 실행 시 같은 환경 변수를 읽습니다. 맞장구(aizuchi) 테스트는 가짜 UNIX 소켓을 bind하므로, 실행 환경에서 UNIX 소켓을 만들 수 있어야 합니다.
+상주 프로세스가 없으면 smoke의 두 항목은 FAIL이 됩니다 (실행하려면 `AIZUCHI_SERVE`와 `AIZUCHI_MODEL`을 설정해 임시 소켓을 시작합니다). `test_paths.py`와 `e2e_silent.sh`도 단독 실행 시 같은 환경 변수를 읽습니다. 맞장구(aizuchi) 테스트는 가짜 UNIX 소켓을 바인드하므로, 실행 환경에서 UNIX 소켓을 만들 수 있어야 합니다.
 
 `run-all.sh`의 출력은 `항목, 결과, 상세 내역` 및 실패한 라인으로 구성됩니다 (smoke는 상위 12개).

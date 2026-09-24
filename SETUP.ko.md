@@ -2,7 +2,7 @@
 
 # 도입 절차 (입력 및 출력)
 
-사람이든 AI든, 위에서부터 순서대로 따라 하면 동일한 오디오 환경이 구축된다. 재료는 이 Mac (macOS 27.0 26A428, arm64) 실물이다. 추측으로 채우지 않았다. 모르는 행은 "不明"으로 표시했다.
+사람이든 AI든, 위에서부터 순서대로 따라 하면 동일한 오디오 환경이 구축된다. 재료는 이 Mac (macOS 27.0 26A428, arm64) 실물이다. 추측으로 채우지 않았다. 모르는 항목은 "불명"으로 표시했다.
 
 키, 집의 호스트 이름, 실제 주소는 작성하지 않는다. 설정 템플릿은 플레이스홀더를 사용한다.
 
@@ -190,7 +190,7 @@ Aivis 접속 대상은 환경 변수 `VOICE_AIVIS_BASE`입니다 (미설정 시 
 
 ## 7. Hammerspoon (설치 방법 · 권한 · init.lua · 2개의 현행 입력 및 삭제된 경로)
 
-음성 입력 조작의 원본은 **`~/.hammerspoon/init.lua`** (tools/voice 외부. 이 Mac의 파일은 2026-08-25 기준)입니다. `tools/voice/input/hammerspoon-init.lua`는 현재 존재하지 않습니다. Hammerspoon이 오른쪽 Option으로 설정된 하드웨어 버튼을 감시하며, `~/.local/bin/voicein`을 자식 프로세스로 실행합니다. 상시 리스닝(常時リッスン) 기능은 삭제되었으며, 남아 있는 코드에 대한 설명은 다음과 같습니다.
+음성 입력 조작의 원본은 **`~/.hammerspoon/init.lua`** (tools/voice 외부. 이 Mac의 파일은 2026-08-25 기준)입니다. `tools/voice/input/hammerspoon-init.lua`는 현재 존재하지 않습니다. Hammerspoon이 오른쪽 Option으로 설정된 하드웨어 버튼을 감시하며, `~/.local/bin/voicein`을 자식 프로세스로 실행합니다. 상시 청취 기능은 삭제되었으며, 남아 있는 코드에 대한 설명은 다음과 같습니다.
 
 ### 설치 방법
 
@@ -296,7 +296,7 @@ Aizuchi만 필요하다면, 동일한 한 줄을 자신의 로그인 스크립�
 
 ### Claude Code — `~/.claude/settings.json`에 2개 추가
 
-Stop と Notification. 프로젝트의 `~/project/.claude/settings.json`에는 voice hook가 없습니다 (권한만 있음). 설정은 사용자의 `~/.claude/settings.json`에 추가해야 합니다.
+Stop 및 Notification. 프로젝트의 `~/project/.claude/settings.json`에는 voice hook가 없습니다 (권한만 있음). 설정은 사용자의 `~/.claude/settings.json`에 추가해야 합니다.
 
 ```json
 {

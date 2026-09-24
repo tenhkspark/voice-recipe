@@ -105,7 +105,7 @@ Gemma 26B 专用（`voice.py` 中的 SUMMARY_PROMPT，OpenAI 兼容 API 请求�
 3. 无法获取座位或不匹配时保持静音（日志记录 `kind=seat-skip`）。**目标为空的 tmux 会返回其他座位的名称**，因此如果 `TMUX_PANE` 为空，则在入口处拦截（踩坑点 7.1）。
 4. 穿透性异常：手动 `read` / `test` / `--no-play`。Kill Switch `CLAUDE_VOICE_MUTE` 会使所有路径保持静音。
 
-## 5.1 逐句合成与失败处理
+## 5. 逐句合成与失败处理
 
 - 将摘要文本按句拆分，使用 AivisSpeech 逐句合成。开始播放当前句后，在播放期间合成下一句并依次播放（确保回复之间不会重叠。播放期间将保持锁定状态）。
 - 预制包（Pre-made packs）：对于归一化后文本一致的短语，直接播放已合成的音频，不再进行实时合成（参见 5.5 节）。
@@ -223,12 +223,22 @@ Apple 的官方步骤请参阅[管理和下载追加声音](https://support.appl
 
 制作 Aizuchi 片段时，从 `project/voice/aizuchi/reply_map.tsv` 提取 `lang=zh` 行的 `text` 原文，发送到本地 API，按 `id` 保存 WAV 并登记到 manifest。中文专名和多音字应使用对应引擎的读音词典或音素映射；`readings.tsv` 不保证能被其他引擎直接导入。macOS `say` 是基础替代方案，不提供 AivisSpeech 那样的一体化声音选择、韵律控制、用户词典和本地 TTS API。
 
-### 한국어
+### 英语
 
-작성자(일본어)는 AivisSpeech를 사용하지만, AivisSpeech는 일본어 전용이다. 영어·중국어·한국어에는 Mac에서 비슷한 역할을 하는 로컬 음성 합성 도구를 사용한다.
+作者（日语）使用 AivisSpeech，但它仅支持日语。英语、中文和韩语应使用在 Mac 上运行、承担类似功能的本地语音合成工具。
 
-현재 `voice.py`는 언어와 관계없이 설정된 AivisSpeech speaker ID를 사용하고, 실패하면 `/usr/bin/say -v Kyoko`로 고정 대체한다. Aizuchi는 문자 종류로 답변 언어(가나 ja, 한글 ko, 한자 zh, 그 외 en)를 고르지만, 답변 텍스트만 `voice.speak()`에 전달하며 언어별 음성을 고르지 않는다.
+当前 `voice.py` 对所有语言都使用配置的 AivisSpeech speaker ID，失败时固定回退到 `/usr/bin/say -v Kyoko`。Aizuchi 根据字符种类选择回复语言（假名 ja、韩文 ko、汉字 zh、其他 en），但只把回复文本传给 `voice.speak()`，不会选择对应语言的声音。
 
-우선 [piper-plus](https://github.com/ayutaz/piper-plus)를 살펴본다. 공식 문서는 Apple Silicon macOS, 로컬 HTTP API, MIT 코드 라이선스와 속도/운율·사전/G2P 기능을 안내한다. 공개된 사전 학습 음성은 EN/ZH를 포함한 6개 언어로 정리되어 있다. 한국어는 코드 지원만으로 사용 가능한 학습 음성이 있다고 볼 수 없다. 적절한 한국어 음성과 라이선스를 확인할 수 없다면 macOS의 Yuna(ko-KR)를 최소 대안으로 쓴다. 시스템 설정에서 Enhanced/Premium 표시가 있는 음성을 내려받고, 실제 설치된 이름은 `say -v '?'`로 확인한다.
+推荐候选为 [piper-plus](https://github.com/ayutaz/piper-plus)。官方资料介绍了 Apple Silicon macOS、本地 HTTP API、MIT 代码许可，以及语速、韵律和词典/G2P 功能。已公开的预训练语音有 EN/ZH 等六种语言。韩语有代码支持，并不代表已有可用的预训练语音。如果找不到合适且许可明确的韩语模型，可将 macOS 的 Yuna（ko-KR）作为基本替代方案。在系统设置中下载标有 Enhanced/Premium 的声音，并用 `say -v '?'` 确认实际安装的名称。
 
-Aizuchi 클립은 `project/voice/aizuchi/reply_map.tsv`의 `lang=ko` 행 `text`를 그대로 로컬 API에 보내고, WAV를 `id`별로 저장해 manifest에 등록한다. 외래어·고유명사·숫자 읽기는 각 엔진의 사전이나 음소 표기를 사용한다. `readings.tsv`를 그대로 가져올 수 있다고 가정하지 않는다. macOS `say`는 최소 대안이며 AivisSpeech와 같은 통합 음성 선택, 운율 조절, 사용자 사전, 로컬 TTS API를 제공하지 않는다.
+制作 Aizuchi 音频片段时，原样提取 `project/voice/aizuchi/reply_map.tsv` 中 `lang=en`、`zh`、`ko` 行的 `text`，连同选定的语言和声音发送到本地 API，将 WAV 按 `id` 保存并登记到语音包 manifest。请在各语音模型卡片中确认商业使用和修改条件。Apple `say` 是基本替代方案，不提供 AivisSpeech 那样的一体化声音选择、韵律调整、用户词典和本地 TTS API。读音条目应使用各引擎自己的词典或音素标记；`readings.tsv` 是本配方使用的格式，不保证所有引擎都能直接接受。
+
+### 韩语
+
+作者（日语）使用 AivisSpeech，但 AivisSpeech 仅支持日语。英语、中文和韩语应使用可在 Mac 上运行、承担类似功能的本地语音合成工具。
+
+当前 `voice.py` 不区分语言，一律使用配置中的 AivisSpeech speaker ID；失败时固定回退到 `/usr/bin/say -v Kyoko`。Aizuchi 根据文字种类选择回复语言（假名 ja、韩文 ko、汉字 zh、其他 en），但只把回复文本传给 `voice.speak()`，不会选择对应语言的声音。
+
+可先考虑 [piper-plus](https://github.com/ayutaz/piper-plus)。官方资料介绍了 Apple Silicon macOS、本地 HTTP API、MIT 代码许可，以及语速、韵律和词典/G2P 功能。已公开的预训练语音包括 EN/ZH 在内共六种语言。韩语有代码支持，并不代表已有可用的预训练语音。如果无法确认合适的韩语语音及其许可，可将 macOS 的 Yuna（ko-KR）作为基本替代方案。在系统设置中下载标有 Enhanced/Premium 的声音，并用 `say -v '?'` 确认实际安装的名称。
+
+制作 Aizuchi 音频片段时，将 `project/voice/aizuchi/reply_map.tsv` 中 `lang=ko` 行的 `text` 原样发送到本地 API，将 WAV 按 `id` 保存并登记到 manifest。外来词、专有名词和数字的读音应使用各引擎自己的词典或音素标记。不要假定 `readings.tsv` 可以直接导入。macOS `say` 是基本替代方案，不提供 AivisSpeech 那样的一体化声音选择、韵律调整、用户词典和本地 TTS API。

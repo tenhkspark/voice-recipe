@@ -22,13 +22,13 @@ Mac 1대만으로 구동되는 「듣기·즉시 응답·요약·말하기」 �
 - **요약 LLM**: 기본값은 macOS 표준 온디바이스 LLM(Foundation Models)입니다. OpenAI 호환 엔드포인트로 전환도 가능합니다(`summarizer: apple|openai|off`). 두 방식 모두 실패할 경우 원문의 앞 2문장으로 대체합니다.
 - **목소리 AivisSpeech**: 로컬 TTS 엔진(화자는 설정의 `speaker_id`). 합성이 완전히 실패했을 때만 `say`로 폴백(fallback)합니다.
 
-## 2. 이음매
+## 2. 연결 지점
 
 ### hook 입력 (stdin JSON)
 
 | 트리거 | 호출 방식 |
 |---|---|
-| Claude Code Stop | `voice-reply.sh` → `voice.py reply --seat <seat_name>`。transcript_path가 CC 형식(message.role이 user/assistant인 행이 포함된 JSONL)인 경우에만 실행. 본문 = 직전 user 발언 이후의 assistant 본문. 80자 초과 시 요약 |
+| Claude Code Stop | `voice-reply.sh` → `voice.py reply --seat <席名>`。transcript_path가 CC 형식(message.role이 user/assistant인 행이 포함된 JSONL)인 경우에만 실행. 본문 = 직전 user 발언 이후의 assistant 본문. 80자 초과 시 요약 |
 | Claude Code Notification | `voice-notify.sh` → `voice.py hook`。"<seat>, 확인 대기 중"만 출력 |
 | Pi 확장 | `voice.ts`。응답 완료는 `agent_settled`(자동 지속이 없는 확정 시점), 확인 대기는 `ui_prompt_start`(kind=confirm), 비대화 시에는 `tool_execution_end`(isError) → 동일하게 `voice.py reply --seat` 호출. 본문은 assistant 전체 내용을 CC 형식의 임시 JSONL로 만들어 transcript_path를 통해 전달 |
 | 수동 | `voice.py say "텍스트"` (stdin 가능), `read` (last.txt 전체 내용·seat gate 통과), `test` (테스트 재생) |
