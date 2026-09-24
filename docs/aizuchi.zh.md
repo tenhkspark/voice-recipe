@@ -110,7 +110,7 @@ python3 train.py train.jsonl --out ckpt --base base --epochs 3 --batch-size 64 -
 
 常驻 RSS 约为 **389 MiB**。启动时间（从完成 imports 到 OrtInfer 和 reply map 准备就绪）为 **0.27 秒**。判定 median 为 **2.4 ms**（`serve.answer("ありがとう")`，n=200）。tokenizer 仅通过 `tokenizers` 加载，不 import `transformers` / `torch`（见 `~/project/ops/codex-rss.md`，commit `(internal)`）。
 
-dev 的 none 误报率略高于 1%。合格线是以 smoke 测试集为准（§7）。int8 漏掉的 6 个案例并非误判为其他意图，而是因为分值低于阈值而被归为 `none`（例如：“おやすみなさい” $\rightarrow$ none 0.483，韩语“이제 잘게” $\rightarrow$ none 0.381）。
+dev 的 none 误报率略高于 1%。合格线是以 smoke 测试集为准（§7）。int8 漏掉的 6 个案例并非误判为其他意图，而是因为分值低于阈值而被归为 `none`（例如：“おやすみなさい” → none 0.483，韩语“이제 잘게” → none 0.381）。
 
 ## 6. 常驻与 Socket 格式
 

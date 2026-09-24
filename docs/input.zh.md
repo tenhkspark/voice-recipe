@@ -382,7 +382,7 @@ none / 低于阈值: intent=none, reply=""
 
 | 用例 | 预期 |
 |---|---|
-| `aizuchi-thanks`（“谢谢” $\rightarrow$ intent `thanks` + 非空 reply） | 调用播放函数 |
+| `aizuchi-thanks`（“谢谢” → intent `thanks` + 非空 reply） | 调用播放函数 |
 | `aizuchi-none` | 不调用 |
 | `aizuchi-intent-mute`（不在 speak 集合中的 `deploy` 等） | 不调用 |
 | `aizuchi-sock-down` | 不调用 |
@@ -395,8 +395,8 @@ none / 低于阈值: intent=none, reply=""
 
 斜杠归一化（由于没有 `slash_test.py`，直接调用相同的函数）：
 
-- “スラッシュ、モデル” $\rightarrow$ 替换后为 `/model`（即使有逗号也会趋向于紧凑形式）。
-- “スラッシュ、つまり斜線” $\rightarrow$ 保留“斜杠”（因为后面没有跟随命令词）。
+- “スラッシュ、モデル” → 替换后为 `/model`（即使有逗号也会趋向于紧凑形式）。
+- “スラッシュ、つまり斜線” → 保留“斜杠”（因为后面没有跟随命令词）。
 - `_SLASH_CMDS` 中的全部 8 个词，无论使用空格、逗号、间隔号还是紧凑形式，都会变为 `/...`。
 
 HALLUC: 将 `Thank you.` 和 `ご視聴ありがとうございました。` 在 PTT 相当的情况下设为空。普通句子不设为空。

@@ -145,7 +145,7 @@ VOICE_PY=/绝对路径/到/voice.py python3 tests/test_lang_route.py
 3. **使用自己的 LLM 构建训练数据**：针对每个意图，生成多语言（ja/en/zh/ko）× 不同表达方式的变体话术。对于 `none` 类别，则单独生成“无法用固定句式回答的话术”。
 4. **使用相同的模型进行校验**：对所有样本进行判定：该回复是否自然 / `none` 是否确实无法用固定句式回答。剔除判定失败的样本及重复项后，构建数据集。实际行数为 `dataset.jsonl` 28,933 行，`train.jsonl` 32,560 行，`dev.jsonl` 3,645 行（train/dev 总计 36,205 行，比例约为 9:1）。关于这些文件之间数量差异的由来以及生成前的样本数，不根据已确认的实物进行断定。
 5. **训练**：采用 CLS + Linear Head，AdamW 2e-5，训练约 3 个 epoch（如果是 130M 参数规模，在 Mac 上约需 40 分钟）。阈值根据 dev 集上“最小化 `none` 误报”来决定（实际结果为 th=0.55，误报率 0.36%）。
-6. **ONNX int8 量化**：通过 export $\rightarrow$ 动态量化，体积从 500MB 降至 126MB。**判定是否合格的标准是使用固定测试集（smoke.tsv），并需达到与 PyTorch 版本相同的标准**（意图准确率 $\ge$ 0.9，`none` 误报 $\le$ 1%）。如果不达标，则放弃 int8 量化。
+6. **ONNX int8 量化**：通过 export → 动态量化，体积从 500MB 降至 126MB。**判定是否合格的标准是使用固定测试集（smoke.tsv），并需达到与 PyTorch 版本相同的标准**（意图准确率 $\ge$ 0.9，`none` 误报 $\le$ 1%）。如果不达标，则放弃 int8 量化。
 7. **集成**：在常规 PTT 识别流程中，文字识别完成后向 Socket 发起查询并尝试即时回答，随后再返回正文。即使分类 Socket 或即时回答处理失败，异常也会被吸收，识别的正文返回流程仍会继续。此说明是指常规 PTT 路径的行为。
 
 ## 7. 今日踩过的坑
@@ -194,7 +194,7 @@ VOICE_PY=/绝对路径/到/voice.py python3 tests/test_lang_route.py
 确认对象为 `tools/voice/output/voice.py`、`tools/voice/input/voicein.py`、`project/voice/aizuchi/serve.py`、`project/voice/aizuchi/reply_map.tsv`。
 
 - 回复正文及摘要由 `voice.py` 根据配置中的 `speaker_id` 发送到本地 AivisSpeech API（默认 `127.0.0.1:10101`）并进行播放。当前的语音选择不包含语言判定，如果无法使用 AivisSpeech，则始终回退到 `/usr/bin/say -v Kyoko`。因此，即使是英语、中文或韩语的正文，也不会根据语言切换语音，而是统一使用日语发言人 ID 或 Kyoko 进行播放。
-- Aizuchi 通过检查输入字符的范围进行判定：假名 $\rightarrow$ ja、谚文 $\rightarrow$ ko、汉字 $\rightarrow$ zh、其他 $\rightarrow$ en。仅在没有对应语言的回复候选时才会回退到 ja。在 `reply_map` 选定 `text` 后，`voicein.py` 仅是将该字符串传递给 `voice.speak()`，并不会将 `lang` 用于语音选择。即使存在回复片段的 ID，也必须与 `voice.py` 的包匹配设置及 `manifest` 一致，Aizuchi 本身并不负责选择语言语音。
+- Aizuchi 通过检查输入字符的范围进行判定：假名 → ja、谚文 → ko、汉字 → zh、其他 → en。仅在没有对应语言的回复候选时才会回退到 ja。在 `reply_map` 选定 `text` 后，`voicein.py` 仅是将该字符串传递给 `voice.speak()`，并不会将 `lang` 用于语音选择。即使存在回复片段的 ID，也必须与 `voice.py` 的包匹配设置及 `manifest` 一致，Aizuchi 本身并不负责选择语言语音。
 
 ### 选项与推荐
 
