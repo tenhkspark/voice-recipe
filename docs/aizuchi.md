@@ -1,3 +1,5 @@
+[日本語](./aizuchi.md) / [English](./aizuchi.md) / [中文](./aizuchi.zh.md) / [한국어](./aizuchi.ko.md)
+
 # Aizuchi の作り方
 
 短い発話を意図に分け、挨拶・感謝・謝罪・感情だけ即答する分類器の手順。学習済みの重みは同梱しない。土台モデルを取り、自分の LLM で例文を作り、自分で学習する。数字は作者の実測（2026-09-24、記録は `progress-aizuchi.md`（旧 `(internal record)`）・`progress-aizuchi-wire.md`・`(internal record)`・`runall-first.md`、および `aizuchi/` のファイル件数）。計測が無いところは書かない。

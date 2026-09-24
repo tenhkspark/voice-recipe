@@ -1,3 +1,5 @@
+[日本語](./README.md) / [English](./README.md) / [中文](./README.zh.md) / [한국어](./README.ko.md)
+
 # Voice recipe
 
 人向け: まずこの README、次に [SETUP.md](SETUP.md)。AI 向け: [docs/output.md](docs/output.md)・[docs/input.md](docs/input.md)・[docs/aizuchi.md](docs/aizuchi.md) と [tests/](tests/) を渡してください。

@@ -1,3 +1,5 @@
+[日本語](./README.md) / [English](./README.md) / [中文](./README.zh.md) / [한국어](./README.ko.md)
+
 # 合格の基準（無音）
 
 再生しない。`afplay` と `say` は試験が差し替える。音声ファイルは同梱していない。
