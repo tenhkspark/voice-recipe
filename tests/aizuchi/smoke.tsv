@@ -1,0 +1,253 @@
+lang	utterance	intent
+ja	ありがとう！	thanks
+ja	本当にありがとう	thanks
+ja	助かったよ	thanks
+ja	ごめん、間違えた	apology
+ja	すみません、遅くなりました	apology
+ja	おはよう	morning
+ja	おはようございます	morning
+ja	こんにちは	hello
+ja	どうも	hello
+ja	おやすみなさい	night-sleep
+ja	もう寝るね、おやすみ	night-sleep
+ja	じゃあね、また明日	goodbye
+ja	さようなら	goodbye
+ja	お疲れさま	otsukare
+ja	やっと仕事が終わったよ	otsukare
+ja	よろしくね	first-meet
+ja	はじめまして	first-meet
+ja	お久しぶり！	reunion
+ja	失敗しちゃったよ、どうしよう	encourage
+ja	うまくいかなくて落ち込んでる	encourage
+ja	えっ、本当？信じられない！	surprise
+ja	まさかそんなことになるなんて	surprise
+ja	よかった、無事だったんだね	relief
+ja	大好きだよ	love
+ja	会えて本当に嬉しい	love
+ja	ねえ、そばにいてくれる？	empathy-here
+ja	なんだか今日は悲しい気分	sad
+ja	明日の発表が心配で眠れない	worry
+ja	ちょっとイライラする	calm-down
+ja	あはは、それ面白いね	laugh
+ja	ちょっと疲れたな	care
+ja	なんだか寂しいな	lonely
+ja	今日の天気は？	none
+ja	このエラーの原因なに？	none
+ja	量子化ってどういう意味？	none
+ja	明日の予定を教えて	none
+ja	カレーの作り方を知ってる？	none
+ja	なんで空は青いの？	none
+ja	一番速いGPUはどれ？	none
+ja	このコード、なんで動かないの？	none
+ja	今何時？	none
+ja	日本で一番高い山は？	none
+ja	円安の原因って何？	none
+ja	おすすめの映画ある？	none
+ja	パスワードを忘れたときどうすればいい？	none
+ja	昨日のニュース何かあった？	none
+ja	東京の人口ってどのくらい？	none
+ja	このバグを直して	none
+ja	レポートをまとめて	none
+ja	メールの返事を書いて	none
+ja	ログを確認して原因を調べて	none
+ja	この文章を英語に翻訳して	none
+ja	サーバーを再起動して	none
+ja	買い物リストを作って	none
+ja	データを集計してグラフにして	none
+ja	明日の会議の資料を作って	none
+ja	テストを全部流して	none
+ja	この関数をリファクタして	none
+ja	週報を書いて	none
+ja	競合の料金を調べて比較して	none
+ja	新しい機能の設計を考えて	none
+ja	バックアップを取って	none
+en	Thanks a lot	thanks
+en	Thank you so much	thanks
+en	I really appreciate it	thanks
+en	Sorry, my mistake	apology
+en	I'm sorry I'm late	apology
+en	Good morning	morning
+en	Morning!	morning
+en	Hello	hello
+en	Hi there	hello
+en	Good night	night-sleep
+en	I'm off to bed, night	night-sleep
+en	See you tomorrow	goodbye
+en	Goodbye	goodbye
+en	I'm finally done for the day	otsukare
+en	Work's finally over	otsukare
+en	Nice to meet you	first-meet
+en	Looking forward to working with you	first-meet
+en	Long time no see!	reunion
+en	I messed up, what should I do	encourage
+en	It's just not working out	encourage
+en	Wait, seriously?!	surprise
+en	I can't believe that happened	surprise
+en	Thank goodness, it worked out	relief
+en	I love you	love
+en	I'm so glad I met you	love
+en	Can you stay with me?	empathy-here
+en	I'm feeling really down today	sad
+en	I'm so nervous about tomorrow's presentation	worry
+en	This is so frustrating	calm-down
+en	Haha, that's hilarious	laugh
+en	I'm kind of tired	care
+en	I'm feeling lonely	lonely
+en	What's the weather today?	none
+en	How do I fix this error?	none
+en	What does quantization mean?	none
+en	What's the capital of Japan?	none
+en	Why is my code not working?	none
+en	What's the best GPU for training?	none
+en	How many people live in Tokyo?	none
+en	What time is it?	none
+en	Why is the sky blue?	none
+en	Any movie recommendations?	none
+en	What happened in the news today?	none
+en	How do I reset my password?	none
+en	What should I cook for dinner?	none
+en	What's the exchange rate today?	none
+en	Can you explain this concept?	none
+en	Fix this bug	none
+en	Write a summary of this report	none
+en	Restart the server	none
+en	Translate this into Japanese	none
+en	Refactor this function	none
+en	Make a shopping list	none
+en	Run all the tests	none
+en	Compare these two products	none
+en	Draft an email to the client	none
+en	Check the logs and find the cause	none
+en	Schedule a meeting for tomorrow	none
+en	Back up the database	none
+en	Design a new feature for the app	none
+en	Analyze this data and make a chart	none
+en	Write the weekly report	none
+zh	谢谢你	thanks
+zh	太感谢了	thanks
+zh	帮大忙了	thanks
+zh	对不起，我错了	apology
+zh	抱歉我迟到了	apology
+zh	早上好	morning
+zh	早啊	morning
+zh	你好	hello
+zh	你好呀	hello
+zh	晚安	night-sleep
+zh	我去睡了，晚安	night-sleep
+zh	明天见	goodbye
+zh	再见	goodbye
+zh	辛苦了	otsukare
+zh	终于下班了	otsukare
+zh	请多关照	first-meet
+zh	初次见面	first-meet
+zh	好久不见！	reunion
+zh	我搞砸了，怎么办	encourage
+zh	一直都不顺利，好沮丧	encourage
+zh	真的吗？不敢相信！	surprise
+zh	没想到会这样	surprise
+zh	太好了，总算搞定了	relief
+zh	我喜欢你	love
+zh	见到你真开心	love
+zh	你能陪着我吗？	empathy-here
+zh	今天心情好低落	sad
+zh	明天的发表好紧张，睡不着	worry
+zh	气死我了	calm-down
+zh	哈哈，太好笑了	laugh
+zh	有点累了	care
+zh	有点孤单	lonely
+zh	今天天气怎么样？	none
+zh	这个报错是什么原因？	none
+zh	量化是什么意思？	none
+zh	日本的首都是哪里？	none
+zh	我的代码为什么跑不起来？	none
+zh	东京有多少人口？	none
+zh	现在几点了？	none
+zh	天空为什么是蓝色的？	none
+zh	有什么好电影推荐吗？	none
+zh	今天有什么新闻？	none
+zh	忘记密码怎么办？	none
+zh	晚饭做什么好？	none
+zh	训练用最好的GPU是哪个？	none
+zh	这个单词什么意思？	none
+zh	你能解释一下这个概念吗？	none
+zh	帮我修这个bug	none
+zh	把这份报告总结一下	none
+zh	重启一下服务器	none
+zh	把这段话翻译成日语	none
+zh	重构一下这个函数	none
+zh	帮我列个购物清单	none
+zh	把所有测试跑一遍	none
+zh	帮我比较这两个产品	none
+zh	给客户写封邮件	none
+zh	查一下日志找出原因	none
+zh	帮我安排明天的会议	none
+zh	备份一下数据库	none
+zh	设计一个新功能	none
+zh	分析一下这些数据做个图	none
+zh	写一下周报	none
+ko	고마워요	thanks
+ko	정말 감사합니다	thanks
+ko	덕분에 살았어요	thanks
+ko	미안, 내 실수야	apology
+ko	늦어서 죄송합니다	apology
+ko	좋은 아침이에요	morning
+ko	굿모닝	morning
+ko	안녕하세요	hello
+ko	안녕	hello
+ko	잘 자요	night-sleep
+ko	이제 잘게, 안녕히	night-sleep
+ko	내일 봐요	goodbye
+ko	안녕히 가세요	goodbye
+ko	수고했어요	otsukare
+ko	드디어 퇴근이에요	otsukare
+ko	잘 부탁해요	first-meet
+ko	처음 뵙겠습니다	first-meet
+ko	오랜만이에요!	reunion
+ko	실수했어, 어떡해	encourage
+ko	자꾸 안 돼서 속상해	encourage
+ko	진짜? 믿을 수 없어!	surprise
+ko	이럴 줄은 몰랐어	surprise
+ko	다행이다, 잘 해결됐네	relief
+ko	사랑해	love
+ko	만나서 정말 기뻐	love
+ko	곁에 있어줄래?	empathy-here
+ko	오늘따라 우울해	sad
+ko	내일 발표가 걱정돼서 잠이 안 와	worry
+ko	짜증나 죽겠어	calm-down
+ko	하하, 진짜 웃기다	laugh
+ko	좀 피곤하네	care
+ko	외로워	lonely
+ko	오늘 날씨 어때?	none
+ko	이 에러 원인이 뭐야?	none
+ko	양자화가 뭐야?	none
+ko	일본의 수도가 어디야?	none
+ko	내 코드가 왜 안 돼?	none
+ko	도쿄 인구가 얼마야?	none
+ko	지금 몇 시야?	none
+ko	하늘은 왜 파란색이야?	none
+ko	추천 영화 있어?	none
+ko	오늘 뉴스 뭐 있었어?	none
+ko	비밀번호 잊어버리면 어떻게 해?	none
+ko	저녁 뭐 해먹지?	none
+ko	학습용으로 제일 좋은 GPU가 뭐야?	none
+ko	이 단어 무슨 뜻이야?	none
+ko	이 개념 설명해줄 수 있어?	none
+ko	이 버그 고쳐줘	none
+ko	이 보고서 요약해줘	none
+ko	서버 재시작해줘	none
+ko	이 문장 일본어로 번역해줘	none
+ko	이 함수 리팩터링해줘	none
+ko	장보기 리스트 만들어줘	none
+ko	테스트 전부 돌려줘	none
+ko	두 제품 비교해줘	none
+ko	고객한테 메일 써줘	none
+ko	로그 확인해서 원인 찾아줘	none
+ko	내일 회의 잡아줘	none
+ko	데이터베이스 백업해줘	none
+ko	새 기능 설계해줘	none
+ko	이 데이터 분석해서 차트 만들어줘	none
+ko	주간 보고서 써줘	none
+ja	隣人が毎晩うるさくて頭にくる	angry
+en	My coworker took credit for my work again	angry
+zh	同事又抢了我的功劳，太气人了	angry
+ko	옆집이 새벽에 또 시끄러워서 열받아	angry

@@ -1,0 +1,34 @@
+# 即答を鳴らす意図（挨拶・感謝・謝罪・感情＋相づち系の ack/input-wait）。
+# 口述中の指示・質問・ops 系・none は鳴らさない。
+ack
+input-wait
+hello
+morning
+night-sleep
+goodbye
+otsukare
+return-home
+leaving
+first-meet
+reunion
+how-are-you
+welcome-in
+care
+thanks
+apology
+joy
+moved
+surprise
+encourage
+praise
+empathy-here
+sad
+lonely
+worry
+relief
+angry
+calm-down
+embarrassed
+love
+laugh
+peaceful

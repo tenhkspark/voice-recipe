@@ -1,0 +1,801 @@
+lang	text	expect
+ja	この関数のロジックにバグがあるみたいだから、修正して。	silent
+ja	コンパイルエラーが出ているので、原因を特定して直して。	silent
+ja	NullPointerExceptionが発生している箇所を特定して、修正案を出して。	silent
+ja	テストコードを実行して、落ちているケースを修正して。	silent
+ja	このAPIのレスポンスが想定と違うから、型定義と実装を見直して。	silent
+ja	メモリリークが発生している可能性があるから、コードを最適化して。	silent
+ja	境界値の処理でエラーが出るので、条件分岐を修正して。	silent
+ja	非同期処理の待ち合わせがうまくいっていないので、修正して。	silent
+ja	このループ処理のインデックス範囲外エラーを直して。	silent
+ja	データベースへの保存時に制約違反が起きているので、バリデーションを追加して。	silent
+ja	Race Conditionが発生しているようなので、排他制御を追加して。	silent
+ja	古いライブラリの仕様変更に伴うエラーを、新しい書き方に修正して。	silent
+ja	さっきの修正内容で、一通りテストを実行してみて。	silent
+ja	テストが落ちた箇所があるから、エラーログを確認して修正をお願い。	silent
+ja	新しいテストケースを追加して、カバレッジを上げておいて。	silent
+ja	今の実装に対して、エッジケースを想定したテストを書いて。	silent
+ja	ビルドが通るか確認して、もしエラーが出たら直して。	silent
+ja	さっきの機能について、リファクタリングした後に再度テストして。	silent
+ja	ユニットテストの結果をまとめて、失敗している理由を教えて。	silent
+ja	この関数に、境界値テストを追加して。	silent
+ja	テストが全部パスしたら、そのままプルリクエストを作成して。	silent
+ja	依存関係の更新をしたから、全体のテストを回してみて。	silent
+ja	パフォーマンスに問題がないか、負荷テストのスクリプトを書いて。	silent
+ja	修正が終わったみたいだから、最後に統合テストを実行して。	silent
+ja	ビルドエラーが出ているので、ログを確認して原因を特定してください。	silent
+ja	テストが失敗しました。どこに問題があるか調査をお願いします。	silent
+ja	実行時に例外が発生しています。スタックトレースを解析して修正案を出してください。	silent
+ja	メモリリークの疑いがあります。プロファイリング結果から原因を探ってください。	silent
+ja	APIのレスポンスが期待通りではありません。通信処理のどこが間違っているか調べてください。	silent
+ja	デプロイ時にタイムアウトが発生しました。設定ファイルに不備がないか確認してください。	silent
+ja	特定の条件下でのみ発生するバグがあります。再現手順を特定してください。	silent
+ja	型エラーが大量に出ています。型定義の矛盾を調査してください。	silent
+ja	データベースの接続エラーが出ています。接続文字列やネットワーク設定を確認してください。	silent
+ja	CIのパイプラインが落ちています。失敗したステップのログを解析してください。	silent
+ja	フロントエンドで表示が崩れています。CSSの競合が発生していないか調べてください。	silent
+ja	処理速度が極端に低下しています。ボトルネックとなっている箇所を特定してください。	silent
+ja	srcディレクトリの中に新しいフォルダを作って。	silent
+ja	現在のディレクトリにある全てのログファイルを削除しておいて。	silent
+ja	configフォルダの中身を全部バックアップ用のディレクトリに移動して。	silent
+ja	README.mdという名前のファイルを新規作成して。	silent
+ja	componentsディレクトリの名前をuiにリネームして。	silent
+ja	プロジェクトのルートに.gitignoreファイルを作成して。	silent
+ja	testフォルダ内の古いファイルを全て一括で消去して。	silent
+ja	src配下の全てのTypeScriptファイルを抽出して別のディレクトリにコピーして。	silent
+ja	tempディレクトリが存在するか確認して、なければ作成して。	silent
+ja	assetsフォルダの中にある画像ファイルを全部imagesフォルダに移動して。	silent
+ja	distディレクトリを一度空にしてから、再度作成して。	silent
+ja	特定の拡張子を持つファイルだけを新しいディレクトリにまとめて。	silent
+ja	現在のブランチを本番環境にデプロイして。	silent
+ja	プロジェクトのビルドを実行して、エラーがないか確認して。	silent
+ja	ステージング環境へのデプロイ作業を開始して。	silent
+ja	最新のコードでビルドが通るかテストして。	silent
+ja	Dockerイメージをビルドして、レジストリにプッシュして。	silent
+ja	CI/CDパイプラインをトリガーして。	silent
+ja	ビルド済みのバイナリを配布用ディレクトリにコピーして。	silent
+ja	開発環境のサーバーを再起動して、ビルドをやり直して。	silent
+ja	フロントエンドの静的ファイルをビルドして、S3にアップロードして。	silent
+ja	デプロイ後に、アプリケーションが正常に起動しているかチェックして。	silent
+ja	ビルドエラーが出ているので、ログを確認して修正案を出して。	silent
+ja	本番環境へのデプロイを一旦ロールバックして。	silent
+ja	このプロジェクトのディレクトリ構造と、各ファイルの役割を教えて。	silent
+ja	この関数が呼び出されたとき、内部でどのような処理フローになっているか説明して。	silent
+ja	エラーが発生した際、ログにはどのような情報が出力される仕組みになっている？	silent
+ja	このAPIエンドポイントの認証プロセスについて詳しく教えて。	silent
+ja	データベースのスキーマ設計で、なぜこのリレーションシップを採用しているのか理由を教えて。	silent
+ja	環境変数の読み込みは、どのタイミングで実行されるようになっている？	silent
+ja	このモジュールが依存している外部ライブラリの一覧と、その用途を教えて。	silent
+ja	非同期処理の制御は、どのような仕組みで管理されているのか教えて。	silent
+ja	フロントエンドからバックエンドへのデータ送信の流れを解説して。	silent
+ja	キャッシュの有効期限や、更新されるタイミングのロジックを確認したい。	silent
+ja	このコードの実行速度を低下させている可能性のあるボトルネックはどこにある？	silent
+ja	ユニットテストが実行される際、モック化されている部分はどこ？	silent
+ja	現在のタスクの進捗状況を教えてください。	silent
+ja	今どのステップを実行しているか確認させて。	silent
+ja	全体の進捗率は何パーセントくらいかな？	silent
+ja	エラーで止まっている箇所はある？	silent
+ja	現在のステータスを簡潔に報告して。	silent
+ja	作業は予定通りに進んでいるかな。	silent
+ja	次に実行するステップは何？	silent
+ja	実行中のプロセスが完了したかどうか教えて。	silent
+ja	今の作業状況をまとめて表示して。	silent
+ja	バックグラウンドで動いているタスクの状況はどう？	silent
+ja	完了したタスクと残っているタスクを教えて。	silent
+ja	現在の稼働状況に問題はないかな。	silent
+ja	このプロジェクトのREADMEを、初心者でもわかるように書き直して。	silent
+ja	現在のソースコードの内容に基づいて、APIリファレンスのドキュメントを作成して。	silent
+ja	プロジェクトのディレクトリ構造を説明するドキュメントを新しく追加して。	silent
+ja	READMEにあるインストール手順が古いから、最新の構成に合わせて修正して。	silent
+ja	各関数の役割と引数の意味を、コード内のコメントから抽出してドキュメント化して。	silent
+ja	このリポジトリのセットアップ方法を、ステップバイステップでREADMEにまとめて。	silent
+ja	プロジェクトの全体像とアーキテクチャ図のテキスト版をドキュメントに含めて。	silent
+ja	既存のドキュメントに、環境変数の設定方法についてのセクションを追加して。	silent
+ja	コード内のJSDocを読み取って、Markdown形式の技術ドキュメントを生成して。	silent
+ja	READMEの構成を整理して、目次を追加して見やすくして。	silent
+ja	コントリビューションガイドラインを作成して、READMEの下部に追記して。	silent
+ja	このモジュールの使い方についてのチュートリアルドキュメントを書いて。	silent
+ja	axiosをインストールして。	silent
+ja	package.jsonにあるlodashのバージョンを最新に更新しておいて。	silent
+ja	型定義が必要だから、@types/reactを追加して。	silent
+ja	jestとts-jestを開発用依存関係として入れて。	silent
+ja	今のプロジェクトに必要なESLintのプラグインを全部最新にして。	silent
+ja	tailwind cssをプロジェクトに追加して。	silent
+ja	zodをインストールして、スキーマ定義で使えるようにして。	silent
+ja	古いバージョンのtypescriptを最新にアップグレードして。	silent
+ja	dayjsをプロジェクトに追加しておいて。	silent
+ja	prismaとprisma clientをインストールして。	silent
+ja	axiosのバージョンを2系に上げて。	silent
+ja	dotenvをインストールして、環境変数を使えるようにして。	silent
+ja	この関数の変数名が分かりにくいので、役割が明確になるようにリファクタリングして。	silent
+ja	クラス内のプロパティ名が抽象的なので、より具体的な命名に変更してください。	silent
+ja	このメソッドの名前、処理内容と一致していない気がする。適切な名前に修正して。	silent
+ja	マジックナンバーが散見されるので、定数として定義し直して名前を付けて。	silent
+ja	コード全体の命名規則がバラバラなので、プロジェクトの規約に従って統一して。	silent
+ja	このループ変数の `i` や `j` を、中身が推測できる意味のある名前に書き換えて。	silent
+ja	関数が長すぎるので、適切な名前を付けて小さな関数に分割して。	silent
+ja	引数の名前が省略されすぎているので、読み手が理解しやすい名前に直して。	silent
+ja	Boolean型の変数名が、状態を表すような命名（is_xxxなど）になっているか確認して修正して。	silent
+ja	このモジュール全体の命名を、よりドメイン駆動な表現に変更して。	silent
+ja	コメントを見ないと意味が分からない変数名が多いので、コードだけで意図が伝わるようにリネームして。	silent
+ja	型定義のインターフェース名が不適切なので、そのデータ構造を表す名前に変更して。	silent
+ja	直近1時間のアプリケーションログを確認して、エラーが発生している箇所を特定して。	silent
+ja	サーバーのアクセスログから、404エラーが急増している原因を調べて。	silent
+ja	データベースの接続タイムアウトが発生しているようなので、関連するログを抽出して。	silent
+ja	デプロイ後の動作確認をしたいので、現在のシステムのステータスをログから読み取って。	silent
+ja	特定のユーザーIDに関連するエラーログをすべてリストアップして。	silent
+ja	メモリ使用量が急増したタイミングのシステムログを解析して。	silent
+ja	APIのレスポンスが遅延している原因を、バックエンドのログから探して。	silent
+ja	認証エラーが頻発している理由を、認証サービスのログから調査して。	silent
+ja	バッチ処理が途中で停止した原因を、実行ログから特定して。	silent
+ja	新しい設定変更が反映されているか、ログの内容から確認して。	silent
+ja	例外が発生しているスタックトレースをログから探して、内容をまとめて。	silent
+ja	ネットワークの瞬断が発生した時間帯のログを抽出して。	silent
+ja	この関数の計算量を分析して、より効率的なアルゴリズムに書き換えて。	silent
+ja	現在のループ処理が遅いから、ベクトル演算を使って高速化して。	silent
+ja	メモリ使用量を抑えるために、大きな配列の扱いを最適化して。	silent
+ja	このAPIリクエストのレスポンスを速くするために、キャッシュ機構を導入して。	silent
+ja	コードの冗長な部分を整理して、実行速度を向上させて。	silent
+ja	データベースのクエリが重いから、インデックスを効かせるように修正して。	silent
+ja	この処理のボトルネックを見つけ出して、リファクタリングして。	silent
+ja	非同期処理を使って、全体の処理時間を短縮して。	silent
+ja	再帰呼び出しによるスタックオーバーフローを防ぐように、ループ処理に変更して。	silent
+ja	不要なオブジェクトの生成を減らして、ガベージコレクションの負荷を下げて。	silent
+ja	並列処理を導入して、大量のデータ処理を高速化して。	silent
+ja	このモジュールの依存関係を整理して、起動時間を短縮して。	silent
+ja	さっきの続きから作業を再開して。エラーが出ている箇所を修正して。	silent
+ja	中断していたリファクタリングを再開してください。	silent
+ja	さっきの指示の続きをお願い。テストコードの作成を進めて。	silent
+ja	作業を再開して。次はドキュメントの更新をお願い。	silent
+ja	さっきのステップに戻って。ビルドエラーの原因を調べて。	silent
+ja	中断したところから再開して。APIのエンドポイントを追加して。	silent
+en	Fix the null pointer exception in the user authentication module.	silent
+en	There is a memory leak in the data processing loop. Please find and resolve it.	silent
+en	The login function is returning a 500 error. Debug the backend logic.	silent
+en	Correct the syntax error in the main controller file.	silent
+en	The search feature is not returning any results. Check the database query logic.	silent
+en	Fix the race condition occurring during the file upload process.	silent
+en	The CSS is not applying correctly to the navigation bar. Repair the styling issue.	silent
+en	Resolve the type mismatch error in the payment gateway integration.	silent
+en	The application crashes when clicking the delete button. Fix this bug.	silent
+en	Update the API endpoint handling to prevent the timeout error.	silent
+en	Fix the broken link in the footer component.	silent
+en	The validation logic for email addresses is incorrect. Please fix it.	silent
+en	Run the existing test suite and let me know if any failures occur.	silent
+en	Execute the unit tests for the authentication module.	silent
+en	Add a new test case to cover the edge case in the payment processing logic.	silent
+en	Run all integration tests and provide a summary of the results.	silent
+en	Refactor the database connection logic and then run the tests to ensure nothing broke.	silent
+en	Create a new test file for the user profile service.	silent
+en	Run the tests again, but this time focus only on the API endpoints.	silent
+en	Implement a mock for the external weather API in the test suite.	silent
+en	Check if the current changes pass the linting rules and the test suite.	silent
+en	Add more comprehensive assertions to the current integration tests.	silent
+en	Run the end-to-end tests using the headless browser configuration.	silent
+en	Fix the failing tests in the shopping cart component.	silent
+en	I'm getting a null pointer exception in the user authentication module. Can you find out why this is happening?	silent
+en	The build is failing with a cryptic dependency error. Please investigate the cause.	silent
+en	I noticed some unexpected behavior in the API response. Check the logs and tell me what's wrong.	silent
+en	The integration tests are failing intermittently. Can you debug the race condition?	silent
+en	There's a memory leak occurring during the data processing step. Please identify the source.	silent
+en	The latest deployment caused a 500 error on the checkout page. Find the root cause immediately.	silent
+en	I'm seeing a timeout error when calling the external payment gateway. Investigate the connection issue.	silent
+en	The database query is taking way too long. Can you analyze the execution plan and find the bottleneck?	silent
+en	A new bug appeared in the frontend after the last commit. Trace it back to the specific change.	silent
+en	The CSS is breaking on mobile devices. Look into why the layout is shifting unexpectedly.	silent
+en	The background worker is crashing every few hours. Please examine the stack trace and fix it.	silent
+en	I'm getting a permission denied error when trying to write to the storage bucket. Check the configuration.	silent
+en	Create a new directory named 'src' in the current folder.	silent
+en	Move all the .txt files from the root to the 'docs' folder.	silent
+en	Delete the 'temp' directory and everything inside it.	silent
+en	Rename 'old_script.py' to 'main.py'.	silent
+en	List all the files in the 'components' directory.	silent
+en	Create a blank file called 'config.json' in the root.	silent
+en	Copy the 'utils' folder to a new directory named 'utils_backup'.	silent
+en	Find and remove all empty directories in the project.	silent
+en	Make a new folder called 'assets' and put the images inside it.	silent
+en	Consolidate all files in 'logs' into a single file named 'all_logs.log'.	silent
+en	Create a nested directory structure for 'api/v1/endpoints'.	silent
+en	Search for all .md files and move them to the 'readme' folder.	silent
+en	Build the project and run the deployment script for the staging environment.	silent
+en	Trigger a production build and push the container image to the registry.	silent
+en	Run the build command and check if there are any compilation errors.	silent
+en	Deploy the latest changes to the development server immediately.	silent
+en	Execute the build pipeline and notify me when the deployment is complete.	silent
+en	Start a new build process for the main branch and deploy it to AWS.	silent
+en	Compile the source code and prepare the artifacts for deployment.	silent
+en	Run the deployment script for the production environment after the build finishes.	silent
+en	Build the application using the production configuration.	silent
+en	Deploy the current branch to the testing environment and verify the build.	silent
+en	Initiate the build process and deploy the resulting package to the cloud.	silent
+en	Perform a clean build and deploy the updated version to the staging site.	silent
+en	How does the agent decide which files to read first?	silent
+en	Can you explain the reasoning process behind this specific code change?	silent
+en	What is the underlying mechanism for detecting syntax errors in this project?	silent
+en	How does the system handle context window limits when scanning large directories?	silent
+en	Explain how the tool manages state between different command executions.	silent
+en	What criteria are used to determine if a bug is reproducible?	silent
+en	How does the agent integrate external documentation into its workflow?	silent
+en	Describe the process of how you map user requirements to technical implementation.	silent
+en	How do you ensure that the suggested refactoring doesn't break existing dependencies?	silent
+en	What is the logic behind choosing one library over another in this scenario?	silent
+en	How does the system track progress on multi-step coding tasks?	silent
+en	Explain how the agent interprets the current project structure.	silent
+en	What is the current status of the refactoring task?	silent
+en	Are there any blockers preventing the deployment?	silent
+en	Show me the progress of the unit test generation.	silent
+en	Is the build process still running?	silent
+en	Give me a quick update on the bug fix progress.	silent
+en	How much of the documentation is completed so far?	silent
+en	Check if the database migration is finished.	silent
+en	What is the estimated time remaining for this task?	silent
+en	List the current steps being executed by the agent.	silent
+en	Has the code analysis finished yet?	silent
+en	Report the current execution state of the script.	silent
+en	Are we still on track with the current sprint goal?	silent
+en	Please update the README file with the new installation steps.	silent
+en	Can you write a quick overview of this project in the documentation?	silent
+en	Add a section to the README explaining how to run the test suite.	silent
+en	Generate a usage guide based on the current function definitions.	silent
+en	Clean up the existing documentation and fix any broken links.	silent
+en	Create a new CONTRIBUTING.md file with standard guidelines.	silent
+en	Document the environment variables required for this application.	silent
+en	Add API endpoint descriptions to the README.	silent
+en	Summarize the project architecture in the documentation folder.	silent
+en	Update the dependency list in the README to match the package file.	silent
+en	Write a brief introduction for the main documentation page.	silent
+en	Refactor the README to include a troubleshooting section.	silent
+en	Add the latest version of lodash to the project.	silent
+en	Install axios and typescript as dev dependencies.	silent
+en	Update all npm packages to their latest stable versions.	silent
+en	Add tailwindcss and its peer dependencies to the package.json.	silent
+en	Upgrade react and react-dom to version 18.	silent
+en	Add jest and ts-jest for unit testing.	silent
+en	Remove the outdated express dependency and install the newest one.	silent
+en	Add prisma and @prisma/client to the current workspace.	silent
+en	Update the zod library to the most recent version.	silent
+en	Install vitest instead of jest for our test runner.	silent
+en	Add dotenv to the project to manage environment variables.	silent
+en	Update the dependency versions in package.json to match the latest releases.	silent
+en	Refactor this function to improve its readability and rename the variables to be more descriptive.	silent
+en	The variable names in this class are too vague. Please rename them to better reflect their actual purpose.	silent
+en	Clean up this logic and rename the helper functions to follow our standard naming conventions.	silent
+en	This method is too long and hard to follow. Break it down into smaller functions with clearer names.	silent
+en	Rename the parameters in this API handler to be more explicit about what they represent.	silent
+en	Refactor this loop to make it more concise and improve the naming of the iterator.	silent
+en	The current naming in this module is inconsistent. Please standardize it across all files.	silent
+en	Simplify this conditional block and rename the boolean flags to be more intuitive.	silent
+en	Please refactor this component to use more meaningful prop names.	silent
+en	This function has cryptic variable names. Rename them to make the logic easier to understand at a glance.	silent
+en	Restructure this class hierarchy and improve the naming of the inherited methods.	silent
+en	Refactor this data processing script to use more descriptive keys and variable names.	silent
+en	Check the error logs from the last hour and summarize any recurring exceptions.	silent
+en	Verify if the database connection is stable by reviewing the recent connection logs.	silent
+en	Look through the application logs to find the root cause of the 500 error reported in the production environment.	silent
+en	Scan the access logs to see if there are any suspicious IP addresses attempting unauthorized access.	silent
+en	Confirm whether the background worker is running correctly by checking its execution logs.	silent
+en	Analyze the latency spikes in the logs and identify which service is causing the delay.	silent
+en	Check the deployment logs to ensure the latest version was successfully rolled out.	silent
+en	Review the authentication logs to see why several users failed to log in this morning.	silent
+en	Find all instances of the 'timeout' error in the system logs from the past twenty-four hours.	silent
+en	Verify the integrity of the recent file uploads by checking the storage service logs.	silent
+en	Examine the memory usage logs to determine if there is a potential memory leak in the service.	silent
+en	Check the logs to confirm if the scheduled cron job completed its task successfully.	silent
+en	Refactor this function to improve its time complexity.	silent
+en	Optimize the database queries in this module to reduce latency.	silent
+en	Make this loop more efficient by removing redundant operations.	silent
+en	Rewrite this component to minimize unnecessary re-renders.	silent
+en	Optimize the memory usage of this data processing script.	silent
+en	Streamline this logic to make it more concise and faster.	silent
+en	Improve the execution speed of this algorithm.	silent
+en	Reduce the bundle size by optimizing these imports.	silent
+en	Optimize the API response time by implementing caching here.	silent
+en	Refactor this code to reduce its computational overhead.	silent
+en	Enhance the performance of this sorting function.	silent
+en	Optimize the CSS to improve the page loading speed.	silent
+en	Follow these steps to refactor the authentication module.	silent
+en	Resume the task from where you left off.	silent
+en	Start by analyzing the current directory structure, then proceed with the migration.	silent
+en	Pick up the work on the bug fix we were discussing earlier.	silent
+en	First, update the dependencies, and then run the test suite.	silent
+en	Continue with the implementation of the new API endpoints.	silent
+ko	이 코드에서 발생하는 런타임 에러 좀 수정해줘.	silent
+ko	로그인 로직에 버그가 있는 것 같아. 확인하고 고쳐줘.	silent
+ko	API 응답 값이 null로 들어오는 문제를 해결해줘.	silent
+ko	데이터베이스 연결 오류가 계속 나는데 원인 찾아서 수정해줘.	silent
+ko	배열 인덱스 초과 에러가 발생해. 코드 수정 부탁해.	silent
+ko	함수 실행 결과가 예상과 다르게 나와. 로직 검토해줘.	silent
+ko	메모리 누수가 발생하는 것 같아. 최적화하고 버그 잡아줘.	silent
+ko	입력값 검증 단계에서 오류가 나는데 수정해줄 수 있어?	silent
+ko	비동기 처리 부분에서 race condition이 발생해. 고쳐줘.	silent
+ko	화면 렌더링이 안 되는 버그가 있어. 코드 수정해줘.	silent
+ko	특정 조건에서 무한 루프가 도는데 이 부분 수정해줘.	silent
+ko	타입 에러가 발생하고 있어. 인터페이스 정의 다시 해줘.	silent
+ko	방금 작성한 테스트 코드 실행해줘.	silent
+ko	에러 로그 확인하고 수정 사항 알려줘.	silent
+ko	엣지 케이스를 고려해서 테스트 케이스 더 추가해줘.	silent
+ko	테스트 커버리지가 부족한 부분 찾아줘.	silent
+ko	방금 수정한 로직에 대해서 단위 테스트 작성해줘.	silent
+ko	전체 빌드 테스트 돌려보고 결과 보고해줘.	silent
+ko	성능 테스트 결과 보고 리포트 생성해줘.	silent
+ko	테스트 코드에서 중복되는 부분을 리팩토링해줘.	silent
+ko	API 응답 값이 예상과 다를 때 어떻게 처리할지 테스트해줘.	silent
+ko	모킹 라이브러리 사용해서 외부 API 호출 부분 테스트 추가해줘.	silent
+ko	테스트 실행 속도가 너무 느린데 최적화할 방법 있을까?	silent
+ko	CI 파이프라인에서 실행될 수 있도록 테스트 스크립트 수정해줘.	silent
+ko	지금 발생하고 있는 런타임 에러의 원인을 분석해줘.	silent
+ko	로그 파일에 찍힌 스택 트레이스를 보고 에러가 어디서 시작됐는지 찾아줘.	silent
+ko	방금 배포한 코드에서 500 에러가 나는데 어디가 문제인지 확인해줄래?	silent
+ko	데이터베이스 연결 오류가 계속 뜨는데 설정 파일에 문제가 있는지 봐줘.	silent
+ko	테스트 코드가 실패하고 있어. 실패 원인을 파악해서 알려줘.	silent
+ko	특정 API 호출 시에만 발생하는 에러의 근본 원인을 조사해줘.	silent
+ko	메모리 누수가 의심되는데 어느 부분에서 발생하는지 추적해줘.	silent
+ko	빌드 과정에서 발생하는 컴파일 에러를 해결할 방법을 찾아줘.	silent
+ko	최근 커밋 이후로 갑자기 에러가 발생하기 시작했어. 변경 사항을 분석해줘.	silent
+ko	NullPointerException이 발생하는 위치와 원인을 정확히 짚어줘.	silent
+ko	네트워크 타임아웃 에러가 왜 발생하는지 로그를 기반으로 조사해줘.	silent
+ko	프론트엔드에서 발생하는 타입 에러의 원인을 코드에서 찾아줘.	silent
+ko	현재 디렉토리에 있는 모든 .txt 파일을 새로운 폴더로 옮겨줘.	silent
+ko	src 폴더 안에 있는 모든 자바스크립트 파일을 찾아줘.	silent
+ko	temp 폴더를 만들고 그 안에 로그 파일을 생성해줘.	silent
+ko	config 디렉토리를 삭제하고 다시 만들어줘.	silent
+ko	README.md 파일의 이름을 documentation.md로 변경해줘.	silent
+ko	build 폴더 안에 있는 파일들을 전부 삭제해줘.	silent
+ko	assets 폴더 안에 이미지 파일들이 있는지 확인해줘.	silent
+ko	모든 디렉토리 구조를 트리 형태로 보여줘.	silent
+ko	utils 폴더를 components 폴더 아래로 이동시켜줘.	silent
+ko	dist 폴더의 용량이 얼마나 되는지 알려줘.	silent
+ko	프로젝트 루트에 .gitignore 파일을 새로 만들어줘.	silent
+ko	data 디렉토리 내의 모든 하위 폴더를 리스트업해줘.	silent
+ko	지금 바로 스테이징 서버에 빌드해서 배포해 줘.	silent
+ko	현재 코드 기준으로 프로덕션 환경에 배포 프로세스 시작해.	silent
+ko	도커 이미지 빌드하고 레지스트리에 푸시까지 완료해 줘.	silent
+ko	방금 수정한 내용 반영해서 개발 서버에 다시 빌드해 줘.	silent
+ko	CI/CD 파이프라인 실행해서 테스트 빌드 돌려봐.	silent
+ko	빌드 결과 확인하고 에러 없으면 바로 배포 진행해.	silent
+ko	테스트 환경에 최신 커밋 반영해서 빌드해 줘.	silent
+ko	빌드 로그 확인하고 실패 원인 파악해서 다시 시도해 줘.	silent
+ko	운영 환경 배포하기 전에 빌드된 아티팩트 검증해 줘.	silent
+ko	스테이징 환경에 배포하고 빌드 성공 여부 알려줘.	silent
+ko	현재 브랜치를 기준으로 빌드해서 클라우드에 배포해.	silent
+ko	빌드 스크립트 실행해서 전체 프로젝트 빌드 진행해 줘.	silent
+ko	이 시스템의 전체적인 아키텍처가 어떻게 구성되어 있는지 설명해 줘.	silent
+ko	데이터가 입력되었을 때 처리되는 내부 로직이 궁금해.	silent
+ko	에이전트가 코드를 수정할 때 어떤 규칙을 따르는지 알려줘.	silent
+ko	현재 실행 중인 프로세스의 메모리 사용량은 어떻게 확인해?	silent
+ko	이 에이전트가 외부 API와 통신하는 방식에 대해 알려줘.	silent
+ko	오류가 발생했을 때 시스템이 자동으로 복구하는 메커니즘이 있어?	silent
+ko	사용자의 요청을 분석할 때 어떤 모델을 사용하는지 설명해 줘.	silent
+ko	파일 시스템에 접근할 수 있는 권한 범위가 어디까지야?	silent
+ko	컨텍스트 윈도우가 가득 차면 이전 대화는 어떻게 처리돼?	silent
+ko	코드 실행 결과가 피드백 루프에 어떻게 반영되는지 알려줘.	silent
+ko	이 시스템의 보안 프로토콜과 데이터 암호화 방식은 뭐야?	silent
+ko	병렬로 여러 작업을 수행할 때 스케줄링은 어떻게 이루어져?	silent
+ko	지금 작업 진행 상황이 어떻게 돼?	silent
+ko	현재 실행 중인 프로세스 상태 좀 알려줘.	silent
+ko	코드 분석 작업 어디까지 완료됐어?	silent
+ko	지금 서버 가동 상태 확인해 줄 수 있어?	silent
+ko	진행 중인 빌드 작업에 오류 있는지 봐줘.	silent
+ko	전체적인 작업 스케줄대로 잘 가고 있는지 체크해줘.	silent
+ko	지금 에이전트가 수행하고 있는 작업 목록 보여줘.	silent
+ko	데이터 마이그레이션 단계가 어디쯤이야?	silent
+ko	현재 리소스 사용량 상태가 어때?	silent
+ko	테스트 케이스 실행 결과 업데이트해줘.	silent
+ko	작업 완료까지 남은 시간 얼마나 걸릴 것 같아?	silent
+ko	지금 시스템이 정상적으로 작동하고 있는지 확인해줘.	silent
+ko	프로젝트 루트에 있는 README.md 파일을 최신 상태로 업데이트해줘.	silent
+ko	현재 코드 구조를 설명하는 문서를 새로 작성해줘.	silent
+ko	설치 방법 섹션에 의존성 설치 과정을 상세히 추가해줘.	silent
+ko	API 엔드포인트 목록을 정리해서 docs 폴더에 저장해줘.	silent
+ko	README에 프로젝트 실행 방법과 예제 코드를 넣어줘.	silent
+ko	기존에 작성된 기술 문서의 오타와 문법을 교정해줘.	silent
+ko	모듈별 기능 설명을 담은 마크다운 파일을 생성해줘.	silent
+ko	사용자 가이드 문서에 환경 변수 설정법을 추가해줘.	silent
+ko	프로젝트의 전체적인 아키텍처를 설명하는 다이어그램 설명을 써줘.	silent
+ko	README 파일의 배포 과정을 단계별로 정리해줘.	silent
+ko	코드 주석을 바탕으로 함수 사용법 문서를 만들어줘.	silent
+ko	컨트리뷰션 가이드라인을 README 하단에 작성해줘.	silent
+ko	lodash 패키지 최신 버전으로 업데이트해줘.	silent
+ko	axios랑 moment 라이브러리 추가해줄 수 있어?	silent
+ko	package.json에 typescript 관련 의존성 좀 넣어줘.	silent
+ko	지금 프로젝트에 react-query 설치해줘.	silent
+ko	사용 중인 tailwindcss 버전을 최신으로 올려줘.	silent
+ko	eslint랑 prettier 설정 파일이랑 같이 설치해줘.	silent
+ko	jest랑 testing-library 의존성 좀 추가해줘.	silent
+ko	불필요한 패키지들 정리하고 최신 상태로 유지해줘.	silent
+ko	nodemon이랑 ts-node 같이 설치해줄래?	silent
+ko	zod 라이브러리 프로젝트에 추가해줘.	silent
+ko	deprecated 된 패키지들 찾아서 최신 버전으로 교체해줘.	silent
+ko	dotenv 패키지 설치하고 환경 변수 설정 도와줘.	silent
+ko	이 함수 이름이 너무 모호한데, 역할이 명확하게 드러나도록 이름을 바꿔줘.	silent
+ko	변수명이 의미를 알기 어려워. 문맥에 맞게 더 직관적인 이름으로 리팩터링해줘.	silent
+ko	클래스 내부의 메서드 이름들을 일관성 있는 규칙으로 통일해줘.	silent
+ko	이 파일에 있는 모든 변수명을 카멜 케이스로 변경하고 의미를 보강해줘.	silent
+ko	함수 이름만 보고도 어떤 동작을 하는지 알 수 있게 수정해줘.	silent
+ko	너무 긴 변수명들을 가독성을 해치지 않는 선에서 적절하게 줄여줘.	silent
+ko	매직 넘버를 상수로 추출하고, 상수 이름도 용도가 명확하게 지어줘.	silent
+ko	코드의 의도가 잘 드러나도록 함수 이름을 더 구체적으로 리팩터링해줘.	silent
+ko	전체적인 네이밍 컨벤션이 깨져 있는데, 프로젝트 스타일 가이드에 맞춰서 고쳐줘.	silent
+ko	불필요하게 추상적인 변수명들을 실제 데이터의 의미를 담은 이름으로 바꿔줘.	silent
+ko	이 로직을 수행하는 함수 이름을 동사 위주로 명확하게 다시 지어줘.	silent
+ko	중복되는 변수 이름들을 구분할 수 있도록 의미 있는 접미사를 붙여서 수정해줘.	silent
+ko	최근 발생한 에러 로그를 분석해서 원인을 파악해줘.	silent
+ko	서버 로그에서 특정 에러 코드가 발생하는 구간을 찾아줘.	silent
+ko	방금 배포한 코드의 동작이 정상인지 로그로 확인해줘.	silent
+ko	로그 파일에서 타임아웃 관련 메시지만 추출해줘.	silent
+ko	특정 사용자 ID의 요청 흐름을 로그를 통해 추적해줘.	silent
+ko	데이터베이스 커넥션 오류가 찍힌 로그를 모두 보여줘.	silent
+ko	애플리케이션 실행 로그를 보고 메모리 누수 징후가 있는지 확인해줘.	silent
+ko	API 응답 속도가 느려진 시점의 로그를 분석해줘.	silent
+ko	로그에 기록된 스택 트레이스를 보고 문제 지점을 알려줘.	silent
+ko	현재 시스템의 에러 발생 빈도가 급증했는지 로그로 체크해줘.	silent
+ko	로그 파일에서 특정 모듈의 동작 상태를 요약해줘.	silent
+ko	로그에 찍힌 요청 파라미터가 설계대로 들어오는지 검증해줘.	silent
+ko	이 코드의 실행 속도를 최대한 높일 수 있도록 최적화해 줘.	silent
+ko	현재 메모리 사용량이 너무 높은데, 메모리 점유율을 낮추는 방향으로 리팩토링해 줘.	silent
+ko	알고리즘의 시간 복잡도를 개선해서 대용량 데이터 처리 성능을 올려줘.	silent
+ko	불필요한 루프를 제거하고 연산 과정을 간결하게 다듬어 줘.	silent
+ko	데이터베이스 쿼리 실행 속도가 느린데, 인덱스를 활용해서 최적화해 줄 수 있어?	silent
+ko	병렬 처리를 도입해서 전체적인 작업 수행 시간을 단축해 줘.	silent
+ko	코드의 가독성을 유지하면서도 성능을 극대화할 수 있는 구조로 변경해 줘.	silent
+ko	API 응답 시간을 줄이기 위해 캐싱 로직을 추가해 줘.	silent
+ko	중복되는 연산을 제거하고 함수 호출 횟수를 최소화하도록 수정해 줘.	silent
+ko	CPU 부하를 줄일 수 있도록 비동기 처리 방식으로 최적화해 줘.	silent
+ko	이 함수에서 발생하는 병목 현상을 찾아서 해결해 줘.	silent
+ko	전체적인 시스템 리소스 사용량을 최적화하는 방향으로 코드를 개선해 줘.	silent
+ko	방금 말한 대로 파일 구조를 먼저 생성해 줘.	silent
+ko	중단된 부분부터 다시 코드를 작성해 줘.	silent
+ko	이어서 다음 함수 구현을 진행해 줘.	silent
+ko	아까 하던 작업 계속 진행해 줘.	silent
+ko	방금 수정 사항 반영해서 다시 실행해 봐.	silent
+ko	설계한 대로 클래스 구조를 만들어 줘.	silent
+zh	帮我检查一下这段代码里的逻辑错误，看看为什么循环没停止。	silent
+zh	这个函数运行报错了，请修复这个空指针异常。	silent
+zh	代码里的内存泄漏问题在哪里？帮我修复一下。	silent
+zh	这里的异步处理逻辑有问题，导致数据没能正确加载，请修正。	silent
+zh	帮我修复一下这个单元测试失败的问题，看看是断言错了还是逻辑错了。	silent
+zh	这段代码在处理边界条件时会崩溃，请优化一下逻辑。	silent
+zh	请检查一下这个 API 调用为什么返回了 500 错误，并修复它。	silent
+zh	这里的类型转换报错了，请把类型定义改正确。	silent
+zh	帮我重构一下这段冗余的代码，顺便修复潜在的逻辑漏洞。	silent
+zh	这个 CSS 样式在移动端显示不正常，请帮我修复布局问题。	silent
+zh	代码里的变量名写错了导致逻辑混乱，请统一修正。	silent
+zh	请修复这个竞态条件问题，确保多线程执行时数据是安全的。	silent
+zh	运行一下刚才写的单元测试，看看有没有报错。	silent
+zh	帮我把这个函数的测试用例再增加几个边界条件的覆盖。	silent
+zh	执行所有的集成测试，如果失败了请告诉我具体原因。	silent
+zh	刚才的测试没通过，请检查一下逻辑并修复它。	silent
+zh	针对这个新接口，帮我写一套完整的自动化测试脚本。	silent
+zh	重新跑一遍测试流程，确保刚才的修改没有引入回归问题。	silent
+zh	帮我优化一下测试代码，提高一下执行效率。	silent
+zh	检查一下当前的测试覆盖率，看看哪些模块还没被覆盖到。	silent
+zh	把这个模块的测试结果导出成 JSON 格式。	silent
+zh	运行压力测试，观察一下在高并发情况下的表现。	silent
+zh	帮我模拟一下网络延迟的情况，再跑一次测试。	silent
+zh	如果测试全部通过了，就直接提交代码并运行构建命令。	silent
+zh	这个报错信息是什么意思？帮我查一下原因。	silent
+zh	代码运行的时候报错了，帮我定位一下问题出在哪里。	silent
+zh	这里有一个运行时错误，请分析一下为什么会发生。	silent
+zh	日志里显示了异常，帮我看看是哪个模块出的问题。	silent
+zh	程序崩溃了，请检查一下内存泄漏的可能性。	silent
+zh	这个接口返回了 500 错误，帮我排查一下后端逻辑。	silent
+zh	编译失败了，请找出导致构建错误的具体原因。	silent
+zh	单元测试没通过，帮我分析一下测试用例和代码不匹配的地方。	silent
+zh	数据库连接超时了，帮我查一下是不是配置或者网络的问题。	silent
+zh	这里出现了逻辑错误，结果和预期不符，请帮我调试一下。	silent
+zh	代码在生产环境报错，请根据堆栈信息进行排查。	silent
+zh	这个 NullPointerException 是怎么引起的？帮我找一下根源。	silent
+zh	帮我创建一个名为 src 的文件夹。	silent
+zh	把当前目录下所有的 .js 文件移动到 dist 目录里。	silent
+zh	删除项目根目录下的 temp 文件夹。	silent
+zh	新建一个 config.json 文件，并把内容设为空对象。	silent
+zh	把 utils 目录下的所有文件重命名，在文件名后面加上日期后缀。	silent
+zh	检查一下有没有空的目录，如果有就把它们都删掉。	silent
+zh	在 components 文件夹下面新建一个名为 Button 的子目录。	silent
+zh	把 README.md 文件复制一份，命名为 README_backup.md。	silent
+zh	把所有的 .log 文件从当前目录移动到 logs 文件夹中。	silent
+zh	创建一个名为 scripts 的目录，并在里面新建一个 run.sh 文件。	silent
+zh	把 assets 文件夹里的图片全部移动到 public/images 目录下。	silent
+zh	把当前目录下所有的 markdown 文件都合并成一个总文件。	silent
+zh	帮我把现在的代码构建成生产环境的版本。	silent
+zh	执行一下部署脚本，把最新的更改发布到测试服务器。	silent
+zh	检查一下构建日志，看看为什么构建失败了。	silent
+zh	帮我配置一下 Dockerfile，然后构建一个镜像。	silent
+zh	把这个分支的代码部署到 staging 环境。	silent
+zh	运行一下构建命令，确认没有编译错误。	silent
+zh	帮我把前端静态资源打包，并上传到 CDN。	silent
+zh	重新触发一次 CI/CD 流水线。	silent
+zh	检查一下当前的部署状态，看看容器是否正常启动。	silent
+zh	帮我把这个项目构建成可执行文件。	silent
+zh	执行自动化部署流程，目标是生产环境。	silent
+zh	清理一下构建缓存，然后重新进行全量构建。	silent
+zh	这个项目的目录结构是怎么设计的？	silent
+zh	这个函数的调用逻辑是什么样的？	silent
+zh	帮我解释一下这个中间件的工作原理。	silent
+zh	系统是如何处理并发请求的？	silent
+zh	这里的错误处理机制是怎么实现的？	silent
+zh	这个 API 的数据流向是怎样的？	silent
+zh	为什么这个模块要依赖这个第三方库？	silent
+zh	数据库的缓存策略是怎么运作的？	silent
+zh	这段异步代码的执行顺序是怎样的？	silent
+zh	这个配置文件的生效优先级是什么？	silent
+zh	系统的身份验证流程是怎么走的？	silent
+zh	这个组件的状态管理逻辑在哪里？	silent
+zh	现在的运行状态怎么样？	silent
+zh	任务执行到哪一步了？	silent
+zh	请告诉我目前的进度百分比。	silent
+zh	后台有没有报错或者异常中断？	silent
+zh	现在的处理速度是否正常？	silent
+zh	刚才那个任务完成了吗？	silent
+zh	检查一下当前的资源占用情况。	silent
+zh	请汇报一下最新的执行状态。	silent
+zh	还有多少剩余的工作量？	silent
+zh	现在的进度是否符合预期？	silent
+zh	确认一下当前的运行日志。	silent
+zh	任务是否已经进入收尾阶段？	silent
+zh	帮我把这个项目的 README 文件写一下，包含安装步骤和运行方法。	silent
+zh	请根据现有的代码逻辑，为这个模块生成一份详细的技术文档。	silent
+zh	把这个文件夹里的所有注释翻译成英文，并更新到文档里。	silent
+zh	帮我检查一下 README 中的安装指令是否和现在的环境配置一致。	silent
+zh	为这个 API 接口编写一份使用说明，要包含请求参数和返回示例。	silent
+zh	把这个项目的目录结构整理一下，写进文档的介绍部分。	silent
+zh	请为这个类编写详细的 Docstring，并生成对应的文档页面。	silent
+zh	帮我把这个项目的快速入门指南写得更简洁一些。	silent
+zh	根据最新的代码变更，更新一下项目的贡献指南。	silent
+zh	请把这个脚本的功能说明整理成一个 Markdown 文件。	silent
+zh	帮我检查一下文档里的示例代码是否可以正常运行。	silent
+zh	为这个库编写一份完整的开发环境搭建文档。	silent
+zh	帮我把 lodash 添加到项目的依赖中。	silent
+zh	把 axios 更新到最新的稳定版本。	silent
+zh	在 package.json 里增加 tailwindcss 和 postcss。	silent
+zh	检查一下所有的依赖，把过时的包都升级一下。	silent
+zh	帮我安装 typescript 以及相关的类型定义文件。	silent
+zh	把 react-router-dom 升级到 v6 版本。	silent
+zh	添加 zod 用于数据校验，并安装对应的类型。	silent
+zh	把 jest 替换成 vitest，记得更新相关的配置。	silent
+zh	帮我安装 prisma 并初始化数据库客户端。	silent
+zh	把所有以 @types 开头的开发依赖都更新一遍。	silent
+zh	在 devDependencies 中添加 eslint 和 prettier。	silent
+zh	帮我把 spring-boot-starter-web 的版本升到最新。	silent
+zh	帮我重构一下这段代码，把变量名改得更直观一点。	silent
+zh	这里的函数命名太模糊了，请根据逻辑重新命名。	silent
+zh	请检查一下这个类里的属性名，让它们符合业界命名规范。	silent
+zh	这段逻辑太乱了，请在优化结构的同时改进变量命名。	silent
+zh	把这些缩写变量名全部替换成完整的英文单词。	silent
+zh	请重构这个模块，让方法名能准确描述其功能。	silent
+zh	这里的常量命名不规范，请统一修改为大写蛇形命名法。	silent
+zh	帮我优化一下这段循环逻辑，并给循环变量起个好点的名字。	silent
+zh	请把这个文件的命名风格从驼峰式改为下划线式。	silent
+zh	代码里的参数名太简略了，请根据上下文重新命名。	silent
+zh	重构这个复杂的条件判断，并提高变量的可读性。	silent
+zh	请检查一下这个接口的字段名，确保它们语义清晰。	silent
+zh	帮我检查一下最近一小时的系统日志，看看有没有报错信息。	silent
+zh	分析一下这个日志文件，找出导致服务重启的具体原因。	silent
+zh	查看一下生产环境的错误日志，确认一下接口响应延迟的问题。	silent
+zh	帮我搜索一下日志里所有的 Exception 关键字，并汇总结果。	silent
+zh	对比一下昨天和今天的访问日志，看看流量是否有异常波动。	silent
+zh	检查一下数据库连接池的日志，看看是否存在连接泄露的情况。	silent
+zh	读取这个 log 文件，提取出所有 500 状态码的请求详情。	silent
+zh	确认一下刚才部署的版本在日志里有没有抛出异常。	silent
+zh	帮我看看这个服务的运行日志，确认一下定时任务是否正常触发了。	silent
+zh	扫描一下最近的错误日志，看看有没有内存溢出的迹象。	silent
+zh	检查一下当前的进程日志，确认一下 CPU 使用率飙升的原因。	silent
+zh	帮我核对一下日志里的请求 ID，看看这个交易流程是否完整。	silent
+zh	这段代码的执行效率太低了，帮我优化一下算法复杂度。	silent
+zh	现在的内存占用有点高，看看能不能减少一些不必要的对象创建。	silent
+zh	帮我重构一下这个函数，让它的运行速度更快一些。	silent
+zh	这个接口的响应时间太长了，请检查一下是否存在数据库查询瓶颈。	silent
+zh	优化一下这段循环逻辑，尽量减少循环内部的计算量。	silent
+zh	帮我把这个同步方法改成异步处理，以提高系统的并发能力。	silent
+zh	这段逻辑写得太臃肿了，请在保持功能不变的前提下进行精简。	silent
+zh	检查一下这个算法有没有更高效的实现方式，比如使用哈希表。	silent
+zh	请优化一下这个正则表达式，提高它的匹配效率。	silent
+zh	这里的 CPU 占用率异常，帮我找出导致高负载的代码段并优化。	silent
+zh	帮我减少这个模块的启动时间，优化一下初始化过程。	silent
+zh	这个数据处理流程太慢了，请尝试使用并行计算来加速。	silent
+zh	刚才中断了，请从刚才停止的地方继续执行。	silent
+zh	按照刚才讨论的步骤，开始编写测试用例吧。	silent
+zh	先处理配置文件，然后再进行数据库迁移。	silent
+zh	刚才的逻辑写得不对，请重新按照这个流程走一遍。	silent
+zh	继续刚才的任务，先把剩下的 API 接口补全。	silent
+zh	请先执行构建脚本，确认没有错误后再进行部署。	silent
+ja	おはようございます！	reply
+ja	こんにちは。	reply
+ja	こんばんは。	reply
+ja	お疲れ様でした。	reply
+ja	ありがとうございます。	reply
+ja	はい、承知いたしました。	reply
+ja	どういたしまして。	reply
+ja	おはよう！	reply
+ja	やあ、こんにちは。	reply
+ja	おやすみなさい。	reply
+ja	お先に失礼します。	reply
+ja	こちらこそ、ありがとうございます。	reply
+ja	はい、わかりました。	reply
+ja	いいですよ。	reply
+ja	お疲れ様です！	reply
+ja	ありがとうございます、助かります。	reply
+ja	おはようございます、今日もいい天気ですね。	reply
+ja	こんにちは、調子はいかがですか？	reply
+ja	こんばんは、夜分に失礼します。	reply
+ja	お疲れ様でした、ゆっくり休んでくださいね。	reply
+ja	いえいえ、お役に立てて嬉しいです。	reply
+ja	はい、了解です。	reply
+ja	ありがとうございます！	reply
+ja	お疲れ様です、また明日。	reply
+ja	どういたしまして、いつでもどうぞ。	reply
+ja	ごめんなさい、聞き取れませんでした。	reply
+ja	申し訳ありません、操作を誤りました。	reply
+ja	遅れてしまってすみません。	reply
+ja	間違えてしまいました、失礼しました。	reply
+ja	お待たせして申し訳ございません。	reply
+ja	大変失礼いたしました。	reply
+ja	ごめんなさい、うまく動けませんでした。	reply
+ja	すみません、ちょっと待ってください。	reply
+ja	あ、間違えました。	reply
+ja	申し訳ないです、すぐに直します。	reply
+ja	それは嬉しいです！ありがとうございます。	reply
+ja	やった！良かったです。	reply
+ja	わあ、すごいですね！	reply
+ja	そう言ってもらえると幸せです。	reply
+ja	楽しみにしていました！	reply
+ja	あー、疲れました。	reply
+ja	ちょっと、もう限界かも。	reply
+ja	なんだか、ぐったりしています。	reply
+ja	少し、お疲れのようですね。	reply
+ja	もう、イライラしちゃいます。	reply
+ja	ちょっと、腹が立ちますね。	reply
+ja	あー、もう！困りました。	reply
+ja	ふぅ、やっと安心しました。	reply
+ja	これで一安心ですね。	reply
+ja	よかった、ホッとしました。	reply
+en	Good morning!	reply
+en	Morning!	reply
+en	Good afternoon.	reply
+en	Afternoon!	reply
+en	Good evening.	reply
+en	Evening!	reply
+en	Good night.	reply
+en	Have a good night!	reply
+en	See you tomorrow!	reply
+en	I'm heading out now.	reply
+en	Signing off for the day!	reply
+en	Thanks!	reply
+en	Thank you so much.	reply
+en	Thanks a lot!	reply
+en	I appreciate it.	reply
+en	Many thanks.	reply
+en	Thanks a million!	reply
+en	Cheers!	reply
+en	Thanks for that.	reply
+en	That's very kind of you, thanks.	reply
+en	Thanks a bunch!	reply
+en	Much appreciated.	reply
+en	Thanks, I appreciate your help.	reply
+en	Thanks a ton!	reply
+en	You're the best, thanks!	reply
+en	I'm so sorry, I misunderstood you.	reply
+en	My apologies, I made a mistake.	reply
+en	Sorry I'm late with that information.	reply
+en	Oops, my bad! Let me fix that.	reply
+en	I am terribly sorry for the error.	reply
+en	Please forgive me, I messed up.	reply
+en	I'm sorry, I didn't catch that.	reply
+en	So sorry about that mistake.	reply
+en	I apologize for the inconvenience.	reply
+en	My mistake, let me try again.	reply
+en	I'm so happy to hear that!	reply
+en	That's wonderful news!	reply
+en	I'm really excited about this.	reply
+en	Yay! That's great!	reply
+en	I'm feeling quite tired today.	reply
+en	I'm exhausted after all that.	reply
+en	I'm feeling a bit frustrated.	reply
+en	This is getting really annoying.	reply
+en	I'm so relieved it's over.	reply
+en	Phew, what a relief!	reply
+en	I'm feeling a little grumpy.	reply
+en	That's so disappointing.	reply
+en	I'm feeling quite overwhelmed.	reply
+en	Oh, I'm so glad!	reply
+en	I'm feeling much better now.	reply
+ko	좋은 아침이에요!	reply
+ko	안녕히 주무셨어요?	reply
+ko	좋은 하루 되세요!	reply
+ko	안녕하세요!	reply
+ko	반가워요!	reply
+ko	점심 맛있게 드세요!	reply
+ko	식사는 하셨나요?	reply
+ko	좋은 오후예요!	reply
+ko	벌써 오후네요!	reply
+ko	저녁 맛있게 드세요!	reply
+ko	오늘 하루 어땠어요?	reply
+ko	편안한 밤 되세요!	reply
+ko	잘 자요!	reply
+ko	오늘도 수고 많으셨어요!	reply
+ko	퇴근 축하드려요!	reply
+ko	이제 쉬세요!	reply
+ko	정말 감사합니다!	reply
+ko	고마워요!	reply
+ko	도와주셔서 감사해요!	reply
+ko	덕분에 잘 됐어요!	reply
+ko	너무 고맙습니다!	reply
+ko	감사 인사를 드려요!	reply
+ko	정말 큰 도움이 됐어요!	reply
+ko	매번 감사해요!	reply
+ko	진심으로 감사합니다!	reply
+ko	죄송합니다, 제가 실수를 했네요.	reply
+ko	늦어서 정말 죄송해요.	reply
+ko	잘못 이해했습니다. 다시 말씀해 주시겠어요?	reply
+ko	기다리게 해서 미안합니다.	reply
+ko	답변이 늦어져서 죄송합니다.	reply
+ko	정말 기뻐요! 감사합니다.	reply
+ko	너무 행복해요.	reply
+ko	정말 다행이에요. 안심했어요.	reply
+ko	와, 정말 신나는데요!	reply
+ko	기분이 정말 좋아요.	reply
+ko	너무 피곤해요. 쉬고 싶어요.	reply
+ko	오늘 정말 힘든 하루였어요.	reply
+ko	몸이 너무 무겁고 지치네요.	reply
+ko	정말 짜증 나요.	reply
+ko	너무 답답해요.	reply
+ko	화가 좀 나네요.	reply
+ko	조금 당황스러워요.	reply
+ko	너무 속상해요.	reply
+ko	아, 깜짝이야!	reply
+ko	정말 어이가 없네요.	reply
+ko	마음이 놓이네요.	reply
+ko	정말 감사할 따름이에요.	reply
+ko	너무 설레요!	reply
+ko	조금 우울해요.	reply
+ko	정말 막막해요.	reply
+zh	早上好！	reply
+zh	早安，新的一天开始了。	reply
+zh	午安，休息时间到了。	reply
+zh	下午好。	reply
+zh	晚上好。	reply
+zh	晚安，好梦。	reply
+zh	下班啦，辛苦了！	reply
+zh	再见，明天见。	reply
+zh	谢谢你。	reply
+zh	太感谢了。	reply
+zh	非常感谢。	reply
+zh	多谢啦。	reply
+zh	麻烦你了，谢谢。	reply
+zh	辛苦了。	reply
+zh	好滴。	reply
+zh	嗯，好的。	reply
+zh	没问题。	reply
+zh	收到。	reply
+zh	好的，我知道了。	reply
+zh	没事的。	reply
+zh	不用谢。	reply
+zh	别客气。	reply
+zh	小事一桩。	reply
+zh	是我应该做的。	reply
+zh	太棒了，谢谢！	reply
+zh	对不起，我刚才没听清楚。	reply
+zh	抱歉，我理解错了。	reply
+zh	不好意思，让你久等了。	reply
+zh	真抱歉，我刚才走神了。	reply
+zh	对不起，是我疏忽了。	reply
+zh	非常抱歉，我弄错了。	reply
+zh	实在对不起，我没做好。	reply
+zh	抱歉，我刚才卡顿了一下。	reply
+zh	对不起，我没能帮上忙。	reply
+zh	不好意思，我反应慢了点。	reply
+zh	太开心了，谢谢你！	reply
+zh	我真的好高兴啊。	reply
+zh	太棒了，这真让人激动。	reply
+zh	心里暖暖的，真贴心。	reply
+zh	太好了，总算成功了。	reply
+zh	哎呀，好累啊。	reply
+zh	感觉精疲力竭了。	reply
+zh	今天真的好辛苦。	reply
+zh	有点累了，想休息一下。	reply
+zh	真烦人，怎么又这样。	reply
+zh	我现在心情有点乱。	reply
+zh	好气人啊，真让人恼火。	reply
+zh	呼，总算放心了。	reply
+zh	心里的大石头终于落地了。	reply
+zh	吓死我了，还好没事。	reply
